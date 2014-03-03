@@ -16,6 +16,7 @@ wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update
+#DEBIAN_FRONTEND=noninteractive aptitude -y upgrade
 DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl php5-common php5-cli apache2 libapache2-mod-php5
 
 # set mcedit like default editor
