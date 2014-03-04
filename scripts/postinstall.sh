@@ -24,30 +24,30 @@ DEBIAN_FRONTEND=noninteractive aptitude -y update
 DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl php5-common php5-cli apache2 libapache2-mod-php5
 
 # apache2
-mv -f /etc/apache2/apache2.conf                                /etc/apache2/apache2.origin.conf
-mv -f /etc/apache2/ports.conf                                  /etc/apache2/ports.origin.conf
-mv -f /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-available/charset.origin.conf
-mv -f /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.origin.conf
-mv -f /etc/apache2/conf-available/security.conf                /etc/apache2/conf-available/security.origin.conf
+mv -fv /etc/apache2/apache2.conf                                /etc/apache2/apache2.origin.conf
+mv -fv /etc/apache2/ports.conf                                  /etc/apache2/ports.origin.conf
+mv -fv /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-available/charset.origin.conf
+mv -fv /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.origin.conf
+mv -fv /etc/apache2/conf-available/security.conf                /etc/apache2/conf-available/security.origin.conf
 
-cp -f /vagrant/configs/apache2/apache2."$MODE".conf /etc/apache2/apache2.conf
-cp -f /vagrant/configs/apache2/ports.conf /etc/apache2/ports.conf
-cp -f /vagrant/configs/apache2/conf/charset.conf /etc/apache2/conf-available/charset.conf
-cp -f /vagrant/configs/apache2/conf/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.conf
-cp -f /vagrant/configs/apache2/conf/security."$MODE".conf /etc/apache2/conf-available/security.conf
+cp -fv /vagrant/configs/apache2/apache2."$MODE".conf /etc/apache2/apache2.conf
+cp -fv /vagrant/configs/apache2/ports.conf /etc/apache2/ports.conf
+cp -fv /vagrant/configs/apache2/conf/charset.conf /etc/apache2/conf-available/charset.conf
+cp -fv /vagrant/configs/apache2/conf/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.conf
+cp -fv /vagrant/configs/apache2/conf/security."$MODE".conf /etc/apache2/conf-available/security.conf
 
-rm -f /etc/apache2/conf-enabled/*
-ln -s /etc/apache2/conf-available/charset.conf /etc/apache2/conf-enabled/charset.conf
-ln -s /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
-ln -s /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/security.conf
+rm -fv /etc/apache2/conf-enabled/*
+ln -sv /etc/apache2/conf-available/charset.conf /etc/apache2/conf-enabled/charset.conf
+ln -sv /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
+ln -sv /etc/apache2/conf-available/security.conf /etc/apache2/conf-enabled/security.conf
 
 # set mcedit like default editor
-rm -f /etc/alternatives/editor
-ln -s /usr/bin/mcedit /etc/alternatives/editor
+rm -fv /etc/alternatives/editor
+ln -sv /usr/bin/mcedit /etc/alternatives/editor
 
 # install globaly composer.phar as 'composer' command
 
 cd /usr/bin/
 curl -sS https://getcomposer.org/installer | php
-ln -s /usr/bin/composer.phar /usr/bin/composer
+ln -sv /usr/bin/composer.phar /usr/bin/composer
 
