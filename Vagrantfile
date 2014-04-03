@@ -2,9 +2,10 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-	config.vm.box = "debian7-vanilla"
+	config.vm.box = "astral1/saucy64"
 
-	config.vm.box_url = "https://www.dropbox.com/s/gxouugzbnjlny1k/debian-7.0-amd64-minimal.box"
+	# For vagrant vesion < 1.5
+	#config.vm.box_url = "https://vagrantcloud.com/astral1/saucy64/version/1/provider/virtualbox.box"
 
 	config.vm.hostname = "debian-vagrant"
 

@@ -4,13 +4,9 @@ HOST_IP=$1
 HOST_NAME=$2
 MODE=$3
 
-upgrade_to_testing () {
+upgrade_sources () {
 
-	# backup sources.list
-	mv -f /etc/apt/sources.list /etc/apt/sources.origin.list
-
-	# move to testing release and add official nginx and mariadb repos
-	cp -f /vagrant/configs/apt/sources.list /etc/apt/sources.list
+	# official nginx and mariadb repos
 	cp -f /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
 	cp -f /vagrant/configs/apt/mariadb.list /etc/apt/sources.list.d/mariadb.list
 
@@ -87,7 +83,7 @@ php_install () {
 
 	# install globaly composer.phar as 'composer' command
 	cd /usr/bin/
-	curl -sS https://getcomposer.org/installer | php
+	php -r "readfile('https://getcomposer.org/installer');" | php
 	ln -sv /usr/bin/composer.phar /usr/bin/composer
 }
 
@@ -105,7 +101,7 @@ nginx_install () {
 
 sudo su -
 
-upgrade_to_testing
+upgrade_sources
 
 main_install
 apache_install
