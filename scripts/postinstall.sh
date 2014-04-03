@@ -21,7 +21,7 @@ upgrade_sources () {
 
 main_install () {
 
-	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop
 
 	# set mcedit like default editor
 	rm -fv /etc/alternatives/editor
