@@ -1,5 +1,7 @@
 #!/bin/sh
 
+set -e
+
 HOST_IP=$1
 HOST_NAME=$2
 MODE=$3
@@ -99,14 +101,20 @@ nginx_install () {
 	/etc/init.d/nginx reload
 }
 
-sudo su -
+if [ ! -f /vagrant/postinstall.lock ]; then
 
-upgrade_sources
+	sudo su -
 
-main_install
-apache_install
-php_install
-nginx_install
+	upgrade_sources
+
+	main_install
+	apache_install
+	php_install
+	nginx_install
+
+	touch /vagrant/postinstall.lock
+
+fi
 
 
 
