@@ -19,6 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.provision "shell" do |s|
 		s.path = "scripts/postinstall.sh"
-		s.args = "192.168.56.10 debian-vagrant production"
+		s.args = "192.168.56.10 debian-vagrant production Asia/Novosibirsk"
 	end
 end

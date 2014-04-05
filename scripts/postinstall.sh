@@ -1,10 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-set -e
-
+#TODO: added output info
 HOST_IP=$1
 HOST_NAME=$2
 MODE=$3
+TIMEZONE=$4
 
 upgrade_sources () {
 
@@ -14,6 +14,7 @@ upgrade_sources () {
 
 	# import key for nginx
 	wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
+
 	# import key for mariadb
 	apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 
@@ -25,6 +26,10 @@ main_install () {
 
 	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop
 
+	# set timezone
+	echo "$TIMEZONE" > /etc/timezone
+	cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+
 	# set mcedit like default editor
 	rm -fv /etc/alternatives/editor
 	ln -sv /usr/bin/mcedit /etc/alternatives/editor
@@ -35,21 +40,10 @@ apache_install () {
 	DEBIAN_FRONTEND=noninteractive aptitude -y install apache2-bin apache2-data libapache2-mod-php5 libapache2-mod-rpaf
 
 	# apache2
-	mv -fv /etc/apache2/apache2.conf /etc/apache2/apache2.origin.conf
-	mv -fv /etc/apache2/ports.conf   /etc/apache2/ports.origin.conf
 
-	mv -fv /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-available/charset.origin.conf
-	mv -fv /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.origin.conf
-	mv -fv /etc/apache2/conf-available/security.conf                /etc/apache2/conf-available/security.origin.conf
-
-	mv -fv /etc/apache2/mods-available/alias.conf       /etc/apache2/mods-available/alias.origin.conf
-	mv -fv /etc/apache2/mods-available/deflate.conf     /etc/apache2/mods-available/deflate.origin.conf
-	mv -fv /etc/apache2/mods-available/dir.conf         /etc/apache2/mods-available/dir.origin.conf
-	mv -fv /etc/apache2/mods-available/mime.conf        /etc/apache2/mods-available/mime.origin.conf
-	mv -fv /etc/apache2/mods-available/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.origin.conf
-	mv -fv /etc/apache2/mods-available/php5.conf        /etc/apache2/mods-available/php5.origin.conf
-	mv -fv /etc/apache2/mods-available/setenvif.conf    /etc/apache2/mods-available/setenvif.origin.conf
-	mv -fv /etc/apache2/mods-available/rpaf.conf        /etc/apache2/mods-available/rpaf.origin.conf
+	rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
+	rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
+	rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/mods-available/*.conf
 
 	cp -fv /vagrant/configs/apache2/apache2."$MODE".conf /etc/apache2/apache2.conf
 	cp -fv /vagrant/configs/apache2/ports.conf           /etc/apache2/ports.conf
@@ -58,14 +52,7 @@ apache_install () {
 	cp -fv /vagrant/configs/apache2/conf/other-vhosts-access-log.conf /etc/apache2/conf-available/other-vhosts-access-log.conf
 	cp -fv /vagrant/configs/apache2/conf/security."$MODE".conf        /etc/apache2/conf-available/security.conf
 
-	cp -fv /vagrant/configs/apache2/mods/alias.conf       /etc/apache2/mods-available/alias.conf
-	cp -fv /vagrant/configs/apache2/mods/deflate.conf     /etc/apache2/mods-available/deflate.conf
-	cp -fv /vagrant/configs/apache2/mods/dir.conf         /etc/apache2/mods-available/dir.conf
-	cp -fv /vagrant/configs/apache2/mods/mime.conf        /etc/apache2/mods-available/mime.conf
-	cp -fv /vagrant/configs/apache2/mods/mpm_prefork.conf /etc/apache2/mods-available/mpm_prefork.conf
-	cp -fv /vagrant/configs/apache2/mods/php5.conf        /etc/apache2/mods-available/php5.conf
-	cp -fv /vagrant/configs/apache2/mods/setenvif.conf    /etc/apache2/mods-available/setenvif.conf
-	cp -fv /vagrant/configs/apache2/mods/rpaf.conf        /etc/apache2/mods-available/rpaf.conf
+	cp -fv /vagrant/configs/apache2/mods/*.conf       /etc/apache2/mods-available/
 
 	rm -fv /etc/apache2/conf-enabled/*
 	ln -sv /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-enabled/charset.conf
@@ -74,7 +61,9 @@ apache_install () {
 
 	rm -fv /etc/apache2/mods-enabled/*
 
-	a2enmod mpm_prefork access_compat alias deflate dir expires filter headers mime php5 rewrite setenvif rpaf
+	a2enmod mpm_prefork access_compat authz_core alias deflate dir expires filter headers mime php5 rewrite setenvif rpaf
+
+	rm -fv /etc/apache2/sites-enabled/*
 
 	/etc/init.d/apache2 reload
 }
@@ -82,11 +71,27 @@ apache_install () {
 php_install () {
 
 	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli
-
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-json php5-curl php5-gd php5-imagick php5-xdebug
 	# install globaly composer.phar as 'composer' command
 	cd /usr/bin/
-	php -r "readfile('https://getcomposer.org/installer');" | php
-	ln -sv /usr/bin/composer.phar /usr/bin/composer
+	php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=composer
+	#ln -sv /usr/bin/composer.phar /usr/bin/composer
+
+	mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
+	mv -fv /etc/php5/cli/php.ini     /etc/php5/cli/php.origin.ini
+
+	rm -fvR /etc/php5/apache2/conf.d
+	rm -fvR /etc/php5/cli/conf.d
+
+	cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/php.ini
+
+	ln -sv /etc/php5/php.ini        /etc/php5/apache2/php.ini
+	ln -sv /etc/php5/php.ini        /etc/php5/cli/php.ini
+
+	ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
+	ln -sv /etc/php5/mods-available /etc/php5/cli/conf.d
+
+	/etc/init.d/apache2 reload
 }
 
 nginx_install () {
@@ -98,7 +103,32 @@ nginx_install () {
 
 	cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
 
+	mkdir /etc/nginx/sites-available
+	mkdir /etc/nginx/sites-enabled
+
+	mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
+
+	rm -fvR /etc/nginx/conf.d
+	ln -sv /etc/nginx/sites-enabled /etc/nginx/conf.d
+
+	rm -fv /etc/nginx/sites-enabled/*
+
 	/etc/init.d/nginx reload
+}
+
+util_install () {
+
+	rm -fv /var/www/*
+
+	useradd -g www-data web
+	echo "web:web" | chpasswd
+
+	cp -fv /vagrant/scripts/createhost.sh /usr/bin/createhost
+	cp -fv /vagrant/scripts/dissite.sh    /usr/bin/dissite
+	cp -fv /vagrant/scripts/ensite.sh     /usr/bin/ensite
+
+	chown -R web:www-data /var/www
+	chmod -R go=rX,u=rwX  /var/www
 }
 
 if [ ! -f /vagrant/postinstall.lock ]; then
@@ -111,6 +141,7 @@ if [ ! -f /vagrant/postinstall.lock ]; then
 	apache_install
 	php_install
 	nginx_install
+	util_install
 
 	touch /vagrant/postinstall.lock
 
