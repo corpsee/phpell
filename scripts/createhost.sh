@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/bin/bash
+
+#TODO: added output info
 
 test $# -eq 1 || exit
 
@@ -23,7 +25,7 @@ VHOST_APACHE2="<VirtualHost 127.0.0.1:8080>
 </VirtualHost>"
 
 VHOST_NGINX="server {
-	listen 80;
+	listen *:80;
 
 	server_name $1 www.$1;
 	root /var/www/$1/www;
