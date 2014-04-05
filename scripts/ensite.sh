@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 test $# -eq 1 || exit
 
