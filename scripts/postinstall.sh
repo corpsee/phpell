@@ -121,6 +121,7 @@ util_install () {
 
 	rm -fv /var/www/*
 
+	#TODO: Move username and password to config
 	useradd -g www-data web
 	echo "web:web" | chpasswd
 
