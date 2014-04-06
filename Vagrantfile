@@ -9,6 +9,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.hostname = "debian-vagrant"
 
+	#TODO: Moving hostname, ip, timezone and other to config
 	config.vm.network :private_network, ip: "192.168.56.10"
 
 	config.vm.synced_folder "./", "/vagrant", :nfs => true
