@@ -2,10 +2,11 @@
 
 test $# -eq 1 || exit
 
-if [ ! -f /etc/nginx/sites-available/"$1" ]
-then
-	rm -f /etc/nginx/sites-enabled/"$1"
-	ln -s /etc/nginx/sites-available/"$1" /etc/nginx/sites-enabled/"$1"
+if [ ! -f /etc/nginx/sites-enabled/"$1".conf ]; then
+	ln -sf /etc/nginx/sites-available/"$1".conf /etc/nginx/sites-enabled/"$1".conf
+fi
+
+if [ ! -f /etc/apache2/sites-enabled/"$1".conf ]; then
 	a2ensite "$1"
 fi
 
