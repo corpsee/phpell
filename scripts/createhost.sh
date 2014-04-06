@@ -58,8 +58,8 @@ VHOST_NGINX="server {
 }"
 
 cd /etc
-echo "$VHOST_APACHE2" > ./apache2/sites-available/"$1"
-echo "$VHOST_NGINX"   > ./nginx/sites-available/"$1"
+echo "$VHOST_APACHE2" > ./apache2/sites-available/"$1".conf
+echo "$VHOST_NGINX"   > ./nginx/sites-available/"$1".conf
 
 cd /var/www
 mkdir -p ./"$1"/www
