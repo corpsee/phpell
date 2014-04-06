@@ -1,10 +1,10 @@
 #!/bin/bash
 
 #TODO: added output info
-HOST_IP=$1
-HOST_NAME=$2
-MODE=$3
-TIMEZONE=$4
+#HOST_IP=$1
+#HOST_NAME=$2
+MODE=$1
+TIMEZONE=$2
 
 upgrade_sources () {
 
