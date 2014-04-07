@@ -33,6 +33,9 @@ main_install () {
 	# set mcedit like default editor
 	rm -fv /etc/alternatives/editor
 	ln -sv /usr/bin/mcedit /etc/alternatives/editor
+
+	#TODO: mcedit config
+	#TODO: .bashrc
 }
 
 apache_install () {
