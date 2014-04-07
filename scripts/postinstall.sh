@@ -131,12 +131,16 @@ util_install () {
 	useradd -g www-data web
 	echo "web:web" | chpasswd
 
+	chown -R web:www-data /var/www
+	chmod -R go=rX,u=rwX  /var/www
+
 	cp -fv /vagrant/scripts/createhost.sh /usr/bin/createhost
 	cp -fv /vagrant/scripts/dissite.sh    /usr/bin/dissite
 	cp -fv /vagrant/scripts/ensite.sh     /usr/bin/ensite
 
-	chown -R web:www-data /var/www
-	chmod -R go=rX,u=rwX  /var/www
+	chmod 755 /usr/bin/createhost
+	chmod 755 /usr/bin/dissite
+	chmod 755 /usr/bin/ensite
 }
 
 if [ ! -f /vagrant/postinstall.lock ]; then
