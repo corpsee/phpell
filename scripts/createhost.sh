@@ -69,6 +69,5 @@ mkdir -p ./"$1"/logs
 
 
 cd ./"$1"
-chown -R web:www-data .
-find . -type d -exec chmod 775 {} \;
-find . -type f -exec chmod 664 {} \;
+chown -R web:www-data ./
+chmod -R go=rX,u=rwX  ./
