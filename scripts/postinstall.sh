@@ -65,7 +65,7 @@ php_install () {
 
 	#TODO: PECL/PEAR install: php5-dev php5-pear (libpcre3 libpcre3-dev)...
 	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli
-	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-json php5-curl php5-gd php5-imagick php5-xdebug
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip
 
 	# install globaly composer.phar as 'composer' command
 	cd /usr/bin/
@@ -97,7 +97,6 @@ nginx_install () {
 		wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
 
 	DEBIAN_FRONTEND=noninteractive aptitude -y update
-
 	DEBIAN_FRONTEND=noninteractive aptitude -y install nginx
 
 	# nginx
@@ -118,6 +117,7 @@ nginx_install () {
 	/etc/init.d/nginx reload
 }
 
+#TODO: config
 mariadb_install () {
 
 	# official mariadb repos
@@ -126,12 +126,36 @@ mariadb_install () {
 		apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 
 	DEBIAN_FRONTEND=noninteractive aptitude -y update
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-mysql
 }
 
-#TODO: mariadb_install
-#TODO: mongodb_install
-#TODO: memcached_install
-#TODO: redis_install
+#TODO: config
+postgresql_install () {
+
+	DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql
+}
+
+#TODO: config
+memcached_install () {
+
+	DEBIAN_FRONTEND=noninteractive aptitude -y install memcached
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-memcache php5-memcached
+}
+
+#TODO: config
+redis_install () {
+
+	DEBIAN_FRONTEND=noninteractive aptitude -y install redis-server
+}
+
+#TODO: config
+mongodb_install () {
+
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mongodb
+	DEBIAN_FRONTEND=noninteractive aptitude -y install php5-mongo
+}
 
 util_install () {
 
@@ -153,21 +177,15 @@ util_install () {
 	chmod 755 /usr/bin/ensite
 }
 
-if [ ! -f /vagrant/postinstall.lock ]; then
+sudo su -
 
-	sudo su -
+upgrade_sources
 
-	upgrade_sources
-
-	main_install
-	apache_install
-	php_install
-	nginx_install
-	util_install
-
-	touch /vagrant/postinstall.lock
-
-fi
+main_install
+apache_install
+php_install
+nginx_install
+util_install
 
 
 
