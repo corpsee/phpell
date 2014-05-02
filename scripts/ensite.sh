@@ -7,7 +7,7 @@ if [ ! -f /etc/nginx/sites-enabled/"$1".conf ]; then
 fi
 
 if [ ! -f /etc/apache2/sites-enabled/"$1".conf ]; then
-	a2ensite "$1"
+	ln -sf /etc/apache2/sites-available/"$1".conf /etc/apache2/sites-enabled/"$1".conf
 fi
 
 /etc/init.d/apache2 reload
