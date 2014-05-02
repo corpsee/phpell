@@ -3,7 +3,7 @@
 test $# -eq 1 || exit
 
 rm -f /etc/nginx/sites-enabled/"$1".conf
-a2dissite "$1"
+rm -f /etc/apache2/sites-enabled/"$1".conf
 
 /etc/init.d/apache2 reload
 /etc/init.d/nginx   reload
