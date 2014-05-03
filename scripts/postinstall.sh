@@ -14,7 +14,7 @@ upgrade_sources () {
 
 main_install () {
 
-	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git
 
 	# set timezone
 	echo "$TIMEZONE" > /etc/timezone
@@ -26,6 +26,13 @@ main_install () {
 
 	#TODO: mcedit config
 	#TODO: .bashrc
+}
+
+java_install () {
+
+	DEBIAN_FRONTEND=noninteractive add-app-repository ppa:webupd8team/java
+	DEBIAN_FRONTEND=noninteractive aptitude -y update
+	DEBIAN_FRONTEND=noninteractive aptitude -y install oracle-java7-installer
 }
 
 apache_install () {
