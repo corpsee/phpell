@@ -61,7 +61,7 @@ apache_install () {
 
 	rm -fv /etc/apache2/mods-enabled/*
 
-	a2enmod mpm_prefork access_compat authz_core alias deflate dir expires filter headers mime php5 rewrite setenvif rpaf
+	a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime php5 rewrite setenvif rpaf
 
 	rm -fv /etc/apache2/sites-enabled/*
 

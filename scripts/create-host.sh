@@ -30,7 +30,7 @@ VHOST_NGINX="server {
 	server_name $1 www.$1;
 	root /var/www/$1/www;
 
-	access_log /var/www/$1/logs/nginx_access.log;
+	#access_log /var/www/$1/logs/nginx_access.log;
 	error_log  /var/www/$1/logs/nginx_error.log warn;
 
 	location ~* \.(htm|html|xhtml|jpg|jpeg|gif|png|css|zip|tar|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|wav|bmp|rtf|swf|ico|flv|txt|docx|xlsx)$ {
