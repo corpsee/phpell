@@ -66,8 +66,3 @@ mkdir -p ./"$1"/www
 mkdir -p ./"$1"/sessions
 mkdir -p ./"$1"/temp
 mkdir -p ./"$1"/logs
-
-
-cd ./"$1"
-chown -R web:www-data ./
-chmod -R go=rX,u=rwX  ./
