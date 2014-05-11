@@ -25,9 +25,9 @@ main_install ()
 
 util_install ()
 {
-	cp -fv /vagrant/scripts/utils/create-host.sh /usr/bin/create-host
-	cp -fv /vagrant/scripts/utils/disable-host.sh    /usr/bin/disable-host
-	cp -fv /vagrant/scripts/utils/enable-host.sh     /usr/bin/enable-host
+	cp -fv /vagrant/scripts/utils/create-host.sh  /usr/bin/create-host
+	cp -fv /vagrant/scripts/utils/disable-host.sh /usr/bin/disable-host
+	cp -fv /vagrant/scripts/utils/enable-host.sh  /usr/bin/enable-host
 
 	chmod 755 /usr/bin/create-host
 	chmod 755 /usr/bin/disable-host
