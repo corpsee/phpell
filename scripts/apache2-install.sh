@@ -2,7 +2,7 @@
 
 MODE=$1
 
-aptitude -y install apache2-bin apache2-data libapache2-mod-rpaf
+aptitude -y install apache2 libapache2-mod-rpaf
 [ -d /etc/php ] && aptitude -y install libapache2-mod-php5
 
 # apache2
@@ -28,9 +28,14 @@ ln -sv /etc/apache2/conf-available/security.conf                /etc/apache2/con
 
 rm -fv /etc/apache2/mods-enabled/*
 
+[ -d /etc/php5 ] && mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
+[ -d /etc/php5 ] && rm -fvR /etc/php5/apache2/conf.d
+[ -d /etc/php5 ] && ln -sv /etc/php5/php.ini /etc/php5/apache2/php.ini
+[ -d /etc/php5 ] && ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
+
 a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf
 [ -d /etc/php ] && a2enmod php5
 
 rm -fv /etc/apache2/sites-enabled/*
 
-/etc/init.d/apache2 reload
+/etc/init.d/apache2 restart
