@@ -2,7 +2,8 @@
 
 MODE=$1
 
-DEBIAN_FRONTEND=noninteractive aptitude -y install apache2-bin apache2-data libapache2-mod-php5 libapache2-mod-rpaf
+aptitude -y install apache2-bin apache2-data libapache2-mod-rpaf
+[ -d /etc/php ] && aptitude -y install libapache2-mod-php5
 
 # apache2
 
@@ -18,6 +19,7 @@ cp -fv /vagrant/configs/apache2/conf/other-vhosts-access-log.conf /etc/apache2/c
 cp -fv /vagrant/configs/apache2/conf/security."$MODE".conf        /etc/apache2/conf-available/security.conf
 
 cp -fv /vagrant/configs/apache2/mods/*.conf       /etc/apache2/mods-available/
+[ ! -d /etc/php ] && rm -fv /etc/apache2/mods-available/php5.conf
 
 rm -fv /etc/apache2/conf-enabled/*
 ln -sv /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-enabled/charset.conf
@@ -26,7 +28,8 @@ ln -sv /etc/apache2/conf-available/security.conf                /etc/apache2/con
 
 rm -fv /etc/apache2/mods-enabled/*
 
-a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime php5 rewrite setenvif rpaf
+a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf
+[ -d /etc/php ] && a2enmod php5
 
 rm -fv /etc/apache2/sites-enabled/*
 
