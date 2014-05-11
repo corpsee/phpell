@@ -37,5 +37,12 @@ sudo su -
 main_install
 util_install
 
+cd /vagrant/scripts
+./apache2-install.sh "$MODE"
+./php5-install.sh "$MODE"
+./nginx-install.sh "$MODE"
+./java-install.sh 8
+
+
 
 
