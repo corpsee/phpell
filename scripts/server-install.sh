@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #TODO: added output info
+#TODO: set hosts, hostname
 HOST_IP=$1
 HOST_NAME=$2
 MODE=$3
