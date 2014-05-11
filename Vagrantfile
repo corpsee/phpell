@@ -3,8 +3,8 @@ VAGRANTFILE_API_VERSION = "2"
 #TODO: Move to ubuntu 14.04
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-	config.vm.box = "tnitti/ubuntu-14.04-amd64"
-	#config.vm.box = "astral1/saucy64"
+	#config.vm.box = "tnitti/ubuntu-14.04-amd64"
+	config.vm.box = "astral1/saucy64"
 
 	# For vagrant vesion < 1.5
 	#config.vm.box_url = "https://vagrantcloud.com/tnitti/ubuntu-14.04-amd64/version/3/provider/virtualbox.box"
