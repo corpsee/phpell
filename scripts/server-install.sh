@@ -2,10 +2,18 @@
 
 #TODO: added output info
 #TODO: set hosts, hostname
+#TODO: move vars to script params
 HOST_IP=$1
 HOST_NAME=$2
 MODE=$3
 TIMEZONE=$4
+
+WEB_ROOT="/var/www"
+WEB_USER="web"
+WEB_GROUP="www-data"
+WEB_USER_PASSWORD="web"
+
+JAVA_VERSION="8"
 
 main_install ()
 {
@@ -39,9 +47,10 @@ util_install
 
 cd /vagrant/scripts
 ./apache2-install.sh "$MODE"
-./php5-install.sh "$MODE"
+./php5-install.sh "$MODE" "$TIMEZONE"
 ./nginx-install.sh "$MODE"
-./java-install.sh 8
+./java-install.sh "$JAVA_VERSION"
+./user-install.sh "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
 
 
 
