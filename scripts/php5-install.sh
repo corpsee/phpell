@@ -30,5 +30,5 @@ mv -fv /etc/php5/conf.d/* /etc/php5/mods-available
 rm -fvR /etc/php5/conf.d
 
 [ -d /etc/apache2 ] && cp -fv /vagrant/configs/apache2/mods/php5.conf /etc/apache2/mods-available/php5.conf
-[ -d /etc/php ]     && a2enmod php5
+[ -d /etc/apache2 ]     && a2enmod php5
 [ -d /etc/apache2 ] && /etc/init.d/apache2 restart

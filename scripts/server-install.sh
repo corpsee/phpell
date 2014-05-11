@@ -9,10 +9,8 @@ TIMEZONE=$4
 
 main_install ()
 {
-	DEBIAN_FRONTEND=noninteractive aptitude -y update
-	aptitude -y upgrade
-
-	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git
+	aptitude -y update && aptitude -y upgrade
+	aptitude -y install mc curl htop git
 
 	# set timezone
 	echo "$TIMEZONE" > /etc/timezone

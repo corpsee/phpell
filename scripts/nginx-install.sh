@@ -3,7 +3,7 @@
 MODE=$1
 
 # official nginx
-cp -f /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
+cp -fv /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
 
 # import key for nginx
 wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
@@ -26,4 +26,4 @@ ln -sv /etc/nginx/sites-enabled /etc/nginx/conf.d
 
 rm -fv /etc/nginx/sites-enabled/*
 
-/etc/init.d/nginx reload
+/etc/init.d/nginx restart

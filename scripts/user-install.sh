@@ -8,7 +8,7 @@ WEB_USER_PASSWORD="web"
 rm -fv "$WEB_ROOT"/*
 
 useradd -g "$WEB_GROUP" -d /home/"$WEB_USER" -m -s /bin/bash "$WEB_USER"
-usermod -a -G sudo
+usermod -a -G sudo "$WEB_USER"
 echo "$WEB_USER:$WEB_USER_PASSWORD" | chpasswd
 
 chown -R "$WEB_USER:$WEB_GROUP" "$WEB_ROOT"

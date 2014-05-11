@@ -1,6 +1,18 @@
 #!/bin/bash
 
+JAVA_VERSION=$1
+
+# official nginx
+cp -fv /vagrant/configs/apt/java.list   /etc/apt/sources.list.d/java.list
+
+# import key for mariadb
+apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EEA14886
+
+echo oracle-java"$JAVA_VERSION"-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
+
 #TODO: choose java version (6, 7, 8)
-DEBIAN_FRONTEND=noninteractive add-app-repository ppa:webupd8team/java
-DEBIAN_FRONTEND=noninteractive aptitude -y update
-DEBIAN_FRONTEND=noninteractive aptitude -y install oracle-java7-installer
+aptitude -y update
+aptitude -y install oracle-java"$JAVA_VERSION"-installer
+
+java -version
+javac -version
