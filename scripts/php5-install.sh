@@ -1,6 +1,7 @@
 #!/bin/bash
 
 MODE=$1
+TIMEZONE=$2
 
 #TODO: PECL/PEAR install: php5-dev php5-pear (libpcre3 libpcre3-dev)...
 #TODO: move extension to script params
