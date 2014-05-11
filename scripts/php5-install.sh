@@ -20,12 +20,15 @@ rm -fvR /etc/php5/cli/conf.d
 
 cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/php.ini
 
-[ -d /etc/apache2 ] && ln -sv /etc/php5/php.ini        /etc/php5/apache2/php.ini
-ln -sv /etc/php5/php.ini        /etc/php5/cli/php.ini
+[ -d /etc/apache2 ] && ln -sv /etc/php5/php.ini /etc/php5/apache2/php.ini
+ln -sv /etc/php5/php.ini /etc/php5/cli/php.ini
 
 [ -d /etc/apache2 ] && ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
 ln -sv /etc/php5/mods-available /etc/php5/cli/conf.d
 
+mv -fv /etc/php5/conf.d/* /etc/php5/mods-available
+rm -fvR /etc/php5/conf.d
+
 [ -d /etc/apache2 ] && cp -fv /vagrant/configs/apache2/mods/php5.conf /etc/apache2/mods-available/php5.conf
 [ -d /etc/php ]     && a2enmod php5
-[ -d /etc/apache2 ] && /etc/init.d/apache2 reload
+[ -d /etc/apache2 ] && /etc/init.d/apache2 restart
