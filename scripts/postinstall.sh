@@ -6,6 +6,10 @@
 MODE=$1
 TIMEZONE=$2
 
+WEB_USER="web"
+WEB_GROUP="www-data"
+WEB_USER_PASSWORD="web"
+
 upgrade_sources () {
 
 	DEBIAN_FRONTEND=noninteractive aptitude -y update
@@ -168,16 +172,16 @@ util_install () {
 
 	rm -fv /var/www/*
 
-	#TODO: Move username and password to config
-	useradd -g www-data web
-	echo "web:web" | chpasswd
+	useradd -g "$WEB_GROUP" -d /home/"$WEB_USER" -m -s /bin/bash "$WEB_USER"
+	usermod -a -G sudo
+	echo "$WEB_USER:$WEB_USER_PASSWORD" | chpasswd
 
-	chown -R web:www-data /var/www
-	chmod -R go=rX,u=rwX  /var/www
+	chown -R "$WEB_USER:www-data" /var/www
+	chmod -R ug=rwX,o=rX  /var/www
 
-	cp -fv /vagrant/scripts/createhost.sh /usr/bin/createhost
-	cp -fv /vagrant/scripts/dissite.sh    /usr/bin/dissite
-	cp -fv /vagrant/scripts/ensite.sh     /usr/bin/ensite
+	cp -fv /vagrant/scripts/utils/createhost.sh /usr/bin/createhost
+	cp -fv /vagrant/scripts/utils/dissite.sh    /usr/bin/dissite
+	cp -fv /vagrant/scripts/utils/ensite.sh     /usr/bin/ensite
 
 	chmod 755 /usr/bin/createhost
 	chmod 755 /usr/bin/dissite
