@@ -42,7 +42,3 @@ cd /vagrant/scripts
 ./php5-install.sh "$MODE"
 ./nginx-install.sh "$MODE"
 ./java-install.sh 8
-
-
-
-
