@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: my.cfg
 MYSQL_ROOT_PASSWORD=$1
 
 # official mariadb repos

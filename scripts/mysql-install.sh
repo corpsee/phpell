@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#TODO: my.cfg
 MYSQL_ROOT_PASSWORD=$1
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD"
