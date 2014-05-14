@@ -14,6 +14,8 @@ WEB_USER_PASSWORD="web"
 
 JAVA_VERSION="8"
 
+MYSQL_ROOT_PASSWORD='root'
+
 main_install ()
 {
 	aptitude -y update && aptitude -y upgrade
@@ -53,9 +55,4 @@ cd /home/vagrant
 ./nginx-install.sh   "$MODE"
 ./java-install.sh    "$JAVA_VERSION"
 ./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
-
-
-
-
-
-
+./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
