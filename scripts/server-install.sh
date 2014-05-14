@@ -7,6 +7,13 @@ HOST_NAME=$2
 MODE=$3
 TIMEZONE=$4
 
+WEB_ROOT="/var/www"
+WEB_USER="web"
+WEB_GROUP="www-data"
+WEB_USER_PASSWORD="web"
+
+JAVA_VERSION="8"
+
 main_install ()
 {
 	aptitude -y update && aptitude -y upgrade
@@ -30,6 +37,9 @@ util_install ()
 	chmod 755 /usr/bin/create-host
 	chmod 755 /usr/bin/disable-host
 	chmod 755 /usr/bin/enable-host
+
+	mv -fv /vagrant/scripts/*  /home/vagrant
+	chmod 755 /home/vagrant/*
 }
 
 sudo su -
@@ -37,8 +47,14 @@ sudo su -
 main_install
 util_install
 
-cd /vagrant/scripts
+cd /home/vagrant
 ./apache2-install.sh "$MODE"
-./php5-install.sh "$MODE"
-./nginx-install.sh "$MODE"
-./java-install.sh 8
+./php5-install.sh    "$MODE" "$TIMEZONE"
+./nginx-install.sh   "$MODE"
+./java-install.sh    "$JAVA_VERSION"
+./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
+
+
+
+
+

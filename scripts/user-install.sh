@@ -1,9 +1,9 @@
 #!/bin/bash
 
-WEB_ROOT="/var/www"
-WEB_USER="web"
-WEB_GROUP="www-data"
-WEB_USER_PASSWORD="web"
+WEB_ROOT=$1
+WEB_USER=$2
+WEB_GROUP=$3
+WEB_USER_PASSWORD=$4
 
 rm -fv "$WEB_ROOT"/*
 
