@@ -25,3 +25,4 @@ ln -sv /etc/nginx/sites-enabled /etc/nginx/conf.d
 rm -fv /etc/nginx/sites-enabled/*
 
 /etc/init.d/nginx restart
+
