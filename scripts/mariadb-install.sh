@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MYSQL_ROOT_PASSWORD='root'
+MYSQL_ROOT_PASSWORD=$1
 
 # official mariadb repos
 cp -f /vagrant/configs/apt/mariadb.list /etc/apt/sources.list.d/mariadb.list
