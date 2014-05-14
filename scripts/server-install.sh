@@ -38,6 +38,9 @@ util_install ()
 	chmod 755 /usr/bin/create-host
 	chmod 755 /usr/bin/disable-host
 	chmod 755 /usr/bin/enable-host
+
+	mv -fv /vagrant/scripts/*  /home/vagrant
+	chmod 755 /home/vagrant/*
 }
 
 sudo su -
@@ -45,12 +48,12 @@ sudo su -
 main_install
 util_install
 
-cd /vagrant/scripts
+cd /home/vagrant
 ./apache2-install.sh "$MODE"
-./php5-install.sh "$MODE" "$TIMEZONE"
-./nginx-install.sh "$MODE"
-./java-install.sh "$JAVA_VERSION"
-./user-install.sh "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
+./php5-install.sh    "$MODE" "$TIMEZONE"
+./nginx-install.sh   "$MODE"
+./java-install.sh    "$JAVA_VERSION"
+./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
 
 
 
