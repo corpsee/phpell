@@ -11,3 +11,6 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install php5-mysql
 
 rm -fvR /etc/php5/mods-available/20-*.ini
 [ -d /etc/apache2 ] && /etc/init.d/apache2 restart
+
+#mysql -u root -p
+#service mysql status
