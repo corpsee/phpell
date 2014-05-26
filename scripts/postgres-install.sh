@@ -1,8 +1,6 @@
 #!/bin/bash
 
 #TODO: config
-POSTGRES_PASSWORD=$1
-
 DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql
 
