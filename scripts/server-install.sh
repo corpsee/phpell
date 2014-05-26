@@ -56,3 +56,4 @@ cd /home/vagrant
 ./java-install.sh    "$JAVA_VERSION"
 ./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
 ./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
+./postgres-install.sh

@@ -1,8 +1,12 @@
 #!/bin/bash
 
-#TODO: config
 DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql
+
+mv -fv /etc/postgresql/9.1/main/postgresql.conf /etc/postgresql/9.1/main/postgresql.origin.conf
+cp -fv /vagrant/configs/postgres/postgresql.conf /etc/postgresql/9.1/main/postgresql.conf
+
+service posgresql restart
 
 #echo "postgres:$POSTGRES_PASSWORD" | chpasswd
 
