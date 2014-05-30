@@ -14,8 +14,8 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install nginx
 mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
 cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
 
-mkdir /etc/nginx/sites-available
-mkdir /etc/nginx/sites-enabled
+mkdir -p /etc/nginx/sites-available
+mkdir -p /etc/nginx/sites-enabled
 
 mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
 

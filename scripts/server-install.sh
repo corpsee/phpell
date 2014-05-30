@@ -19,7 +19,7 @@ MYSQL_ROOT_PASSWORD='root'
 main_install ()
 {
 	aptitude -y update && aptitude -y upgrade
-	aptitude -y install mc curl htop git
+	aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip
 
 	# set timezone
 	echo "$TIMEZONE" > /etc/timezone
@@ -40,8 +40,9 @@ util_install ()
 	chmod 755 /usr/bin/disable-host
 	chmod 755 /usr/bin/enable-host
 
-	mv -fv /vagrant/scripts/*  /home/vagrant
-	chmod 755 /home/vagrant/*
+	mkdir /home/vagrant/provision
+	cp -fv /vagrant/scripts/*  /home/vagrant/provision
+	chmod +x /home/vagrant/provision/*
 }
 
 sudo su -
@@ -49,7 +50,7 @@ sudo su -
 main_install
 util_install
 
-cd /home/vagrant
+cd /home/vagrant/provision
 ./apache2-install.sh "$MODE"
 ./php5-install.sh    "$MODE" "$TIMEZONE"
 ./nginx-install.sh   "$MODE"
