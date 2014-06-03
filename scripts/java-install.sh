@@ -10,7 +10,6 @@ apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EEA14886
 
 echo oracle-java"$JAVA_VERSION"-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 
-#TODO: choose java version (6, 7, 8)
 aptitude -y update
 aptitude -y install oracle-java"$JAVA_VERSION"-installer
 
