@@ -3,6 +3,7 @@
 MODE=$1
 TIMEZONE=$2
 
+#TODO: php-fpm + nginx
 #TODO: PECL/PEAR install: php5-dev php5-pear (libpcre3 libpcre3-dev)...
 #TODO: move extension to script params
 #TODO: move timezone setting to script params
