@@ -17,6 +17,8 @@ cd /usr/bin/
 php -r "readfile('https://getcomposer.org/installer');" | php -- --filename=composer
 #ln -sv /usr/bin/composer.phar /usr/bin/composer
 
+#TODO: move php5 'configuration normalize' into separate function
+#TODO: move apache2/fpm/cli configuration into separate functions
 [ -d /etc/apache2 ] && mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
 mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
 
