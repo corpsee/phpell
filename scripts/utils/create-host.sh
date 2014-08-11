@@ -4,6 +4,7 @@
 
 test $# -eq 1 || exit
 
+#TODO: move to templates
 VHOST_APACHE2="<VirtualHost 127.0.0.1:8080>
 	ServerAdmin  poisoncorpsee@gmail.com
 	ServerName   $1
