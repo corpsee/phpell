@@ -1,5 +1,11 @@
 #!/bin/bash
 
+# official postgres
+cp -fv /vagrant/configs/apt/postgres.list   /etc/apt/sources.list.d/postgres.list
+# import key for postgres
+wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
+
+DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql > /dev/null
 
