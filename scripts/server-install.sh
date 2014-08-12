@@ -18,12 +18,12 @@ MYSQL_ROOT_PASSWORD='root'
 
 main_install ()
 {
-	aptitude -y update && aptitude -y upgrade
-	aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip
+	DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip > /dev/null
 
 	# set timezone
 	echo "$TIMEZONE" > /etc/timezone
-	cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+	cp -v /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
 
 	# set mcedit like default editor
 	rm -fv /etc/alternatives/editor
@@ -32,9 +32,9 @@ main_install ()
 
 util_install ()
 {
-    cp -fv /home/vagrant/provision/scripts/utils/create-host.sh  /usr/bin/create-host
-	cp -fv /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
-	cp -fv /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
+    cp -v /home/vagrant/provision/scripts/utils/create-host.sh  /usr/bin/create-host
+	cp -v /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
+	cp -v /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
 
 	chmod 755 /usr/bin/create-host
 	chmod 755 /usr/bin/disable-host
