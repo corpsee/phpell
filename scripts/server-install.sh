@@ -18,6 +18,10 @@ MYSQL_ROOT_PASSWORD='root'
 
 main_install ()
 {
+    locale-gen ru_RU.utf8
+    dpkg-reconfigure locales
+
+    #TODO: locales
 	DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
 	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip > /dev/null
 
