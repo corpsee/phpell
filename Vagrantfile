@@ -9,7 +9,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     #TODO: Moving hostname, ip, timezone and other to config
     config.vm.network :private_network, ip: "192.168.56.10"
 
-    config.vm.synced_folder "./", "/vagrant", :nfs => true
+    config.vm.synced_folder "./", "/home/vagrant/provision", id: "vagrant-root",
+        owner: "vagrant",
+        group: "vagrant",
+        mount_options: ["dmode=755,fmode=755"]
 
     config.vm.provider :virtualbox do |vb|
         vb.customize ["modifyvm", :id, "--memory", "1024"]

@@ -8,8 +8,6 @@ cp -fv /vagrant/configs/postgres/postgresql.conf /etc/postgresql/9.3/main/postgr
 
 service postgresql restart
 
-#echo "postgres:$POSTGRES_PASSWORD" | chpasswd
-
 rm -fvR /etc/php5/mods-available/20-*.ini
 [ -d /etc/apache2 ] && /etc/init.d/apache2 restart
 
