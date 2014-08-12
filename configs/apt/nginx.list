@@ -1,7 +1,9 @@
 # nginx stable
-#deb http://nginx.org/packages/debian/ wheezy nginx
-#deb-src http://nginx.org/packages/debian/ wheezy nginx
+
+deb http://nginx.org/packages/debian/ wheezy nginx
+deb-src http://nginx.org/packages/debian/ wheezy nginx
 
 # nginx mainline
-deb http://nginx.org/packages/mainline/debian/ wheezy nginx
-deb-src http://nginx.org/packages/mainline/debian/ wheezy nginx
+
+#deb http://nginx.org/packages/mainline/debian/ wheezy nginx
+#deb-src http://nginx.org/packages/mainline/debian/ wheezy nginx

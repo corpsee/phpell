@@ -2,8 +2,8 @@
 
 MODE=$1
 
-aptitude -y install apache2 libapache2-mod-rpaf
-[ -d /etc/php5 ] && aptitude -y install libapache2-mod-php5
+DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 libapache2-mod-rpaf > /dev/null
+[ -d /etc/php5 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 
 # apache2
 
