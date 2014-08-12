@@ -5,7 +5,7 @@ WEB_USER=$2
 WEB_GROUP=$3
 WEB_USER_PASSWORD=$4
 
-rm -fv "$WEB_ROOT"/*
+rm -frv "$WEB_ROOT"/*
 
 useradd -g "$WEB_GROUP" -d /home/"$WEB_USER" -m -s /bin/bash "$WEB_USER"
 usermod -a -G sudo "$WEB_USER"
