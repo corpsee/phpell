@@ -12,6 +12,8 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql > /dev/null
 mv -fv /etc/postgresql/9.3/main/postgresql.conf /etc/postgresql/9.3/main/postgresql.origin.conf
 cp -fv /vagrant/configs/postgres/postgresql.conf /etc/postgresql/9.3/main/postgresql.conf
 
+ln -sv /var/lib/postgresql/9.3 /var/lib/postgresql/9.1
+
 service postgresql restart
 
 rm -fvR /etc/php5/mods-available/20-*.ini
