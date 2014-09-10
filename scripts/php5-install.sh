@@ -9,7 +9,8 @@ TIMEZONE=$2
 #TODO: php from dotdeb or other last version
 aptitude -y install php5-common php5-cli
 aptitude -y install php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite
-aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev
+aptitude -y install php5-dev php-pear libpcre3-dev
+pecl install SPL_Types
 [ -d /etc/apache2 ] && aptitude -y install libapache2-mod-php5
 
 # install globaly composer.phar as 'composer' command
