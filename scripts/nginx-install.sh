@@ -7,8 +7,8 @@ cp -fv /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
 # import key for nginx
 wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
 
-DEBIAN_FRONTEND=noninteractive aptitude -y update
-DEBIAN_FRONTEND=noninteractive aptitude -y install nginx
+DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
+DEBIAN_FRONTEND=noninteractive aptitude -y install nginx > /dev/null
 
 # nginx
 mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
