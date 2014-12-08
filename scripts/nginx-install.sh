@@ -10,7 +10,6 @@ wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install nginx > /dev/null
 
-# nginx
 mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
 cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
 

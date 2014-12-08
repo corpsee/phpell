@@ -10,7 +10,9 @@ TIMEZONE=$2
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev > /dev/null
+
 pecl install SPL_Types
+
 [ -d /etc/apache2 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 # install globaly composer.phar as 'composer' command
 cd /usr/bin/
