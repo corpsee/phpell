@@ -18,12 +18,16 @@ MYSQL_ROOT_PASSWORD='root'
 
 main_install ()
 {
-	aptitude -y update && aptitude -y upgrade
-	aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip
+    locale-gen ru_RU.utf8
+    dpkg-reconfigure locales
+
+    #TODO: locales
+	DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
+	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip > /dev/null
 
 	# set timezone
 	echo "$TIMEZONE" > /etc/timezone
-	cp /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+	cp -v /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
 
 	# set mcedit like default editor
 	rm -fv /etc/alternatives/editor
@@ -32,25 +36,22 @@ main_install ()
 
 util_install ()
 {
-	cp -fv /vagrant/scripts/utils/create-host.sh  /usr/bin/create-host
-	cp -fv /vagrant/scripts/utils/disable-host.sh /usr/bin/disable-host
-	cp -fv /vagrant/scripts/utils/enable-host.sh  /usr/bin/enable-host
+    cp -v /home/vagrant/provision/scripts/utils/create-host.sh  /usr/bin/create-host
+	cp -v /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
+	cp -v /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
 
 	chmod 755 /usr/bin/create-host
 	chmod 755 /usr/bin/disable-host
 	chmod 755 /usr/bin/enable-host
-
-	mkdir /home/vagrant/provision
-	cp -fv /vagrant/scripts/*  /home/vagrant/provision
-	chmod +x /home/vagrant/provision/*
 }
 
-sudo su -
+sudo -i
 
 main_install
 util_install
 
-cd /home/vagrant/provision
+cd /home/vagrant/provision/scripts
+
 ./apache2-install.sh "$MODE"
 ./php5-install.sh    "$MODE" "$TIMEZONE"
 ./nginx-install.sh   "$MODE"
