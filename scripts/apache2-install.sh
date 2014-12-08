@@ -1,10 +1,12 @@
 #!/bin/bash
 
 MODE=$1
+APACHE_MODS=$2
 
-DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 libapache2-mod-rpaf > /dev/null
+DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 > /dev/null
 
-[ -d /etc/php5 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
+[ -d /etc/php5 ]  && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
+[ -d /etc/nginx ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-rpaf > /dev/null
 
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
@@ -18,7 +20,8 @@ cp -fv /vagrant/configs/apache2/conf/other-vhosts-access-log.conf /etc/apache2/c
 cp -fv /vagrant/configs/apache2/conf/security."$MODE".conf        /etc/apache2/conf-available/security.conf
 
 cp -fv /vagrant/configs/apache2/mods/*.conf       /etc/apache2/mods-available/
-[ ! -d /etc/php5 ] && rm -fv /etc/apache2/mods-available/php5.conf
+[ ! -d /etc/php5 ]  && rm -fv /etc/apache2/mods-available/php5.conf
+[ ! -d /etc/nginx ] && rm -fv /etc/apache2/mods-available/rpaf.conf
 
 rm -fv /etc/apache2/conf-enabled/*
 ln -sv /etc/apache2/conf-available/charset.conf                 /etc/apache2/conf-enabled/charset.conf
@@ -32,8 +35,9 @@ rm -fv /etc/apache2/mods-enabled/*
 [ -d /etc/php5 ] && ln -sv /etc/php5/php.ini /etc/php5/apache2/php.ini
 [ -d /etc/php5 ] && ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
 
-a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf
+a2enmod "$APACHE_MODS"
 [ -d /etc/php5 ] && a2enmod php5
+[ -d /etc/nginx ] && a2enmod rpaf
 
 rm -fv /etc/apache2/sites-enabled/*
 
