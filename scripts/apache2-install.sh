@@ -3,9 +3,8 @@
 MODE=$1
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 libapache2-mod-rpaf > /dev/null
-[ -d /etc/php5 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 
-# apache2
+[ -d /etc/php5 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
