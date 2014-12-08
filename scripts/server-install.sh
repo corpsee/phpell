@@ -16,6 +16,8 @@ JAVA_VERSION="8"
 
 MYSQL_ROOT_PASSWORD='root'
 
+APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf"
+
 main_install ()
 {
     locale-gen ru_RU.utf8
@@ -52,7 +54,7 @@ util_install
 
 cd /home/vagrant/provision/scripts
 
-./apache2-install.sh "$MODE"
+./apache2-install.sh "$MODE" "$APACHE_MODS"
 ./php5-install.sh    "$MODE" "$TIMEZONE"
 ./nginx-install.sh   "$MODE"
 ./java-install.sh    "$JAVA_VERSION"
