@@ -1,9 +1,7 @@
 VAGRANTFILE_API_VERSION = "2"
 
-#TODO: Move to ubuntu 14.04
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-#	config.vm.box = "puppetlabs/ubuntu-14.04-64-nocm"
 	config.vm.box = "puppetlabs/ubuntu-13.10-64-nocm"
 
 	# For vagrant vesion < 1.5
@@ -23,6 +21,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 	config.vm.provision "shell" do |s|
 		s.path = "scripts/server-install.sh"
-		s.args = "192.168.56.10 vm-ubuntu-13-10 production Asia/Novosibirsk"
+		s.args = "192.168.56.10 vm-ubuntu-1310 production Asia/Novosibirsk"
 	end
 end
