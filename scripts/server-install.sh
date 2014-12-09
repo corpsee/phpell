@@ -7,6 +7,8 @@ HOST_NAME=$2
 MODE=$3
 TIMEZONE=$4
 
+LOCALE='ru_RU'
+
 WEB_ROOT="/var/www"
 WEB_USER="web"
 WEB_GROUP="www-data"
@@ -20,23 +22,24 @@ PACKAGES="mc curl htop git tar bzip2 unrar gzip unzip p7zip"
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf"
 
 set_locales() {
-    locale-gen ru_RU.utf8
-    dpkg-reconfigure locales
+    locale-gen "$LOCALE".utf8
+    #dpkg-reconfigure locales
 }
 
 set_timezone() {
     echo "$TIMEZONE" > /etc/timezone
-    cp -v /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+    ln -sf /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+    #TODO: output to log: date
 }
 
 set_packages() {
-    DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
-    DEBIAN_FRONTEND=noninteractive aptitude -y install "$PACKAGES" > /dev/null
+    DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null & aptitude -y upgrade > /dev/null
+    DEBIAN_FRONTEND=noninteractive aptitude -y install $PACKAGES > /dev/null
 }
 
 set_editor() {
-    rm -fv /etc/alternatives/editor
-    ln -sv /usr/bin/mcedit /etc/alternatives/editor
+    update-alternatives --set editor /usr/bin/mcedit
+    #TODO: output to log: update-alternatives --query editor
 }
 
 util_install ()
