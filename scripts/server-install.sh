@@ -16,40 +16,47 @@ JAVA_VERSION="8"
 
 MYSQL_ROOT_PASSWORD='root'
 
+PACKAGES="mc curl htop git tar bzip2 unrar gzip unzip p7zip"
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf"
 
-main_install ()
-{
+set_locales() {
     locale-gen ru_RU.utf8
     dpkg-reconfigure locales
+}
 
-    #TODO: locales
-	DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
-	DEBIAN_FRONTEND=noninteractive aptitude -y install mc curl htop git tar bzip2 unrar gzip unzip p7zip > /dev/null
+set_timezone() {
+    echo "$TIMEZONE" > /etc/timezone
+    cp -v /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+}
 
-	# set timezone
-	echo "$TIMEZONE" > /etc/timezone
-	cp -v /usr/share/zoneinfo/"$TIMEZONE" /etc/localtime
+set_packages() {
+    DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null && aptitude -y upgrade > /dev/null
+    DEBIAN_FRONTEND=noninteractive aptitude -y install "$PACKAGES" > /dev/null
+}
 
-	# set mcedit like default editor
-	rm -fv /etc/alternatives/editor
-	ln -sv /usr/bin/mcedit /etc/alternatives/editor
+set_editor() {
+    rm -fv /etc/alternatives/editor
+    ln -sv /usr/bin/mcedit /etc/alternatives/editor
 }
 
 util_install ()
 {
     cp -v /home/vagrant/provision/scripts/utils/create-host.sh  /usr/bin/create-host
-	cp -v /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
-	cp -v /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
+    cp -v /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
+    cp -v /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
 
-	chmod 755 /usr/bin/create-host
-	chmod 755 /usr/bin/disable-host
-	chmod 755 /usr/bin/enable-host
+    chmod 755 /usr/bin/create-host
+    chmod 755 /usr/bin/disable-host
+    chmod 755 /usr/bin/enable-host
 }
 
 sudo -i
 
-main_install
+set_locales
+set_timezone
+set_packages
+set_editor
+
 util_install
 
 cd /home/vagrant/provision/scripts
