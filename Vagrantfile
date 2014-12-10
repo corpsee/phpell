@@ -20,6 +20,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "shell" do |s|
         s.path = "scripts/server-install.sh"
-        s.args = "192.168.56.10 vm-ubuntu-1404 production Asia/Novosibirsk"
+        s.args = "192.168.56.10 vm-ubuntu-1404"
     end
 end
