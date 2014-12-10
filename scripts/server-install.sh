@@ -1,12 +1,10 @@
 #!/bin/bash
 
-#TODO: added output info
-#TODO: set hosts, hostname
 HOST_IP=$1
 HOST_NAME=$2
-MODE=$3
-TIMEZONE=$4
 
+MODE="production"
+TIMEZONE="Asia/Novosibirsk"
 LOCALE='ru_RU'
 
 WEB_ROOT="/var/www"
@@ -20,6 +18,7 @@ MYSQL_ROOT_PASSWORD='root'
 
 PACKAGES="mc curl htop git tar bzip2 unrar gzip unzip p7zip"
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif rpaf"
+EDITOR="/usr/bin/mcedit"
 
 set_locales() {
     locale-gen "en_US.utf8"
@@ -41,18 +40,22 @@ set_packages() {
 }
 
 set_editor() {
-    update-alternatives --set editor /usr/bin/mcedit
+    [ -f "$EDITOR" ] && update-alternatives --set editor "$EDITOR"
 }
 
-util_install ()
-{
-    cp -v /home/vagrant/provision/scripts/utils/create-host.sh  /usr/bin/create-host
-    cp -v /home/vagrant/provision/scripts/utils/disable-host.sh /usr/bin/disable-host
-    cp -v /home/vagrant/provision/scripts/utils/enable-host.sh  /usr/bin/enable-host
+set_skel() {
+    cd /home/vagrant/provision/configs/skel-root
+    cp -vRf . /root
 
-    chmod 755 /usr/bin/create-host
-    chmod 755 /usr/bin/disable-host
-    chmod 755 /usr/bin/enable-host
+    cd /home/vagrant/provision/configs/skel
+    cp -vRf . /home/vagrant
+    chown -R vagrant:vagrant /home/vagrant/*
+    chmod -R u=rwX,go=rX     /home/vagrant/*
+
+    cp -vRf . /etc
+
+    chown -R root:root   /etc/skel
+    chmod -R u=rwX,go=rX /etc/skel
 }
 
 sudo -i
@@ -61,6 +64,7 @@ set_packages
 set_locales
 set_timezone
 set_editor
+set_skel
 
 #cd /home/vagrant/provision/scripts
 
