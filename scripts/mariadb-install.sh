@@ -2,9 +2,7 @@
 
 MYSQL_ROOT_PASSWORD=$1
 
-# official mariadb repos
 cp -f /vagrant/configs/apt/mariadb.list /etc/apt/sources.list.d/mariadb.list
-# import key for mariadb
 apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
@@ -19,8 +17,8 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mariadb/my.cnf /etc/mysql/my.cnf
 
-rm -fvR /etc/php5/mods-available/20-*.ini
+#rm -fvR /etc/php5/mods-available/20-*.ini
 [ -d /etc/apache2 ] && /etc/init.d/apache2 restart
 
 #mysql -u root -p
-#service mysql status
+service mysql status

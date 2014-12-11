@@ -12,8 +12,8 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server mysql-client > /
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mysql/my.cnf /etc/mysql/my.cnf
 
-rm -fvR /etc/php5/mods-available/20-*.ini
+#rm -fvR /etc/php5/mods-available/20-*.ini
 [ -d /etc/apache2 ] && /etc/init.d/apache2 restart
 
 #mysql -u root -p
-#service mysql status
+service mysql status

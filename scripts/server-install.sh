@@ -82,8 +82,8 @@ cd /home/vagrant/provision/scripts
 
 ./apache2-install.sh "$MODE" "$APACHE_MODS"
 ./php5-install.sh    "$MODE" "$TIMEZONE" "$PHP_EXTENSIONS"
-#./nginx-install.sh   "$MODE"
-#./java-install.sh    "$JAVA_VERSION"
+./nginx-install.sh   "$MODE"
+./java-install.sh    "$JAVA_VERSION"
 #./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
-#./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
-#./postgres-install.sh
+./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
+./postgres-install.sh
