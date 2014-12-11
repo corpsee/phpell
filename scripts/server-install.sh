@@ -45,14 +45,23 @@ set_editor() {
 
 set_skel() {
     cd /home/vagrant/provision/configs/skel-root
-    cp -vRf . /root
+
+    cp -vf ./.profile     /root
+    cp -vf ./.bashrc      /root
+    cp -vf ./.bash_logout /root
 
     cd /home/vagrant/provision/configs/skel
-    cp -vRf . /home/vagrant
+
+    cp -vf ./.profile     /home/vagrant
+    cp -vf ./.bashrc      /home/vagrant
+    cp -vf ./.bash_logout /home/vagrant
+
     chown -R vagrant:vagrant /home/vagrant/*
     chmod -R u=rwX,go=rX     /home/vagrant/*
 
-    cp -vRf . /etc
+    cp -vf ./.profile     /etc/skel
+    cp -vf ./.bashrc      /etc/skel
+    cp -vf ./.bash_logout /etc/skel
 
     chown -R root:root   /etc/skel
     chmod -R u=rwX,go=rX /etc/skel
