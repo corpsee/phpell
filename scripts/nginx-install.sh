@@ -12,14 +12,8 @@ mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
 cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
 
 mkdir -p /etc/nginx/sites-available
-#mkdir -p /etc/nginx/sites-enabled
 
 mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
-
-rm -fvR /etc/nginx/conf.d
-ln -sv /etc/nginx/sites-enabled /etc/nginx/conf.d
-
-rm -fv /etc/nginx/sites-enabled/*
 
 /etc/init.d/nginx restart
 

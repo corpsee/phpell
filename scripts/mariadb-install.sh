@@ -12,13 +12,8 @@ sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client > /dev/null
 
-[ -d /etc/php5 ] && DEBIAN_FRONTEND=noninteractive aptitude -y install php5-mysql > /dev/null
-
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mariadb/my.cnf /etc/mysql/my.cnf
-
-#rm -fvR /etc/php5/mods-available/20-*.ini
-[ -d /etc/apache2 ] && /etc/init.d/apache2 restart
 
 #mysql -u root -p
 service mysql status
