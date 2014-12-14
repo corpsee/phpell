@@ -10,5 +10,7 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server mysql-client > /
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mysql/my.cnf /etc/mysql/my.cnf
 
+service mysql restart
+
 #mysql -u root -p
 service mysql status
