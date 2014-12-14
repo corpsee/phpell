@@ -21,6 +21,7 @@ PACKAGES="mc curl htop git tar bzip2 unrar gzip unzip p7zip"
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif"
 PHP_EXTENSIONS="php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite"
 EDITOR="/usr/bin/mcedit"
+VIEW="/usr/bin/mcview"
 
 set_locales() {
     locale-gen "en_US.utf8"
@@ -43,6 +44,7 @@ set_packages() {
 
 set_editor() {
     [ -f "$EDITOR" ] && update-alternatives --set editor "$EDITOR"
+    [ -f "$VIEW" ] &&   update-alternatives --set view   "$VIEW"
 }
 
 set_skel() {
@@ -77,14 +79,14 @@ set_timezone
 set_editor
 set_skel
 
-cd /home/vagrant/provision/scripts
+#cd /home/vagrant/provision/scripts
 
 #./utils-install.sh
 
-./apache2-install.sh "$MODE" "$APACHE_MODS"
-./php5-install.sh    "$MODE" "$TIMEZONE" "$PHP_EXTENSIONS"
-./nginx-install.sh   "$MODE"
-./java-install.sh    "$JAVA_VERSION"
+#./apache2-install.sh "$MODE" "$APACHE_MODS"
+#./php5-install.sh    "$MODE" "$TIMEZONE" "$PHP_EXTENSIONS"
+#./nginx-install.sh   "$MODE"
+#./java-install.sh    "$JAVA_VERSION"
 #./user-install.sh    "$WEB_ROOT" "$WEB_USER" "$WEB_GROUP" "$WEB_USER_PASSWORD"
-./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
-./postgres-install.sh
+#./mariadb-install.sh "$MYSQL_ROOT_PASSWORD"
+#./postgres-install.sh
