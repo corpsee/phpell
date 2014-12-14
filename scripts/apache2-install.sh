@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 MODE=$1
 APACHE_MODS=$2
 

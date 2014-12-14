@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 WEB_ROOT=$1
 WEB_USER=$2
 WEB_GROUP=$3

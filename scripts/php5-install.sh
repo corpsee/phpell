@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 MODE=$1
 TIMEZONE=$2
 PHP_EXTENSIONS=$3
