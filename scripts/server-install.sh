@@ -78,12 +78,12 @@ set_timezone
 set_editor
 set_skel
 
-#cd /home/vagrant/provision/scripts
+cd /home/vagrant/provision/scripts
 
 #./utils-install.sh
 
-#./java-install.sh                "$JAVA_VERSION"
-#./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
+./java-install.sh                "$JAVA_VERSION"
+./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
 
-#./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
-#./postgres-php5-install.sh
+./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
+./postgres-php5-install.sh
