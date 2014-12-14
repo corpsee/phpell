@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 MODE=$1
 
 cp -fv /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list

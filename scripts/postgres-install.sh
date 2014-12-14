@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 cp -fv /vagrant/configs/apt/postgres.list   /etc/apt/sources.list.d/postgres.list
 wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
