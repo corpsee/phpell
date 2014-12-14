@@ -22,27 +22,13 @@ cd /usr/bin/
 php -r "readfile('https://getcomposer.org/installer');" | php --
 ln -sv /usr/bin/composer.phar /usr/bin/composer
 
-#TODO: move php5 'configuration normalize' into separate function
-#TODO: move apache2/fpm/cli configuration into separate functions
 [ -d /etc/apache2 ] && mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
 mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
-
-#[ -d /etc/apache2 ] && rm -fvR /etc/php5/apache2/conf.d
-#rm -fvR /etc/php5/cli/conf.d
-
-#cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/php.ini
 
 cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/cli/php.ini
 [ -d /etc/apache2 ] && cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/apache2/php.ini
 
-#[ -d /etc/apache2 ] && ln -sv /etc/php5/php.ini /etc/php5/apache2/php.ini
-#ln -sv /etc/php5/php.ini /etc/php5/cli/php.ini
-
-#[ -d /etc/apache2 ] && ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
-#ln -sv /etc/php5/mods-available /etc/php5/cli/conf.d
-
-#mv -fv /etc/php5/conf.d/* /etc/php5/mods-available
-#rm -fvR /etc/php5/conf.d
+[ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
 
 [ -d /etc/apache2 ] && cp -fv /vagrant/configs/apache2/mods/php5.conf /etc/apache2/mods-available/php5.conf
 [ -d /etc/apache2 ] && a2enmod php5

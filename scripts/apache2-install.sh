@@ -32,12 +32,11 @@ ln -sv /etc/apache2/conf-available/security.conf                /etc/apache2/con
 
 rm -fv /etc/apache2/mods-enabled/*
 [ -d /etc/php5 ] && mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
-#[ -d /etc/php5 ] && rm -fvR /etc/php5/apache2/conf.d
-#[ -d /etc/php5 ] && ln -sv /etc/php5/php.ini /etc/php5/apache2/php.ini
-#[ -d /etc/php5 ] && ln -sv /etc/php5/mods-available /etc/php5/apache2/conf.d
 
 COMMAND="a2enmod ${APACHE_MODS}"
 eval "${COMMAND}"
+
+[ -d /etc/php5 ] && [ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
 
 [ -d /etc/php5 ] && a2enmod php5
 #[ -d /etc/nginx ] && a2enmod rpaf
