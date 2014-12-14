@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 JAVA_VERSION=$1
 
 cp -fv /vagrant/configs/apt/java.list /etc/apt/sources.list.d/java.list
