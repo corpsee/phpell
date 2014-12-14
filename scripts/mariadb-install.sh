@@ -15,6 +15,8 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mariadb/my.cnf /etc/mysql/my.cnf
 
+rm /var/lib/mysql/ib_logfile*
+
 service mysql restart
 
 #mysql -u root -p
