@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 HOST_IP=$1
 HOST_NAME=$2
 

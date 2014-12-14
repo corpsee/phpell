@@ -1,5 +1,6 @@
 #!/bin/bash
 
+
 MYSQL_ROOT_PASSWORD=$1
 
 cp -f /vagrant/configs/apt/mariadb.list /etc/apt/sources.list.d/mariadb.list
