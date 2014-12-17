@@ -8,7 +8,6 @@ PHP_EXTENSIONS=$4
 cd /home/vagrant/provision/scripts
 
 ./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
-./nginx-install.sh         "$MODE"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-rpaf > /dev/null
 
@@ -19,3 +18,5 @@ cp -fv /vagrant/configs/apache2/mods-dep/rpaf.conf /etc/apache2/mods-available/
 
 a2enmod rpaf
 service apache2 restart
+
+./nginx-install.sh "$MODE"

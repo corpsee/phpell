@@ -30,4 +30,4 @@ eval "${COMMAND}"
 
 rm -fv /etc/apache2/sites-enabled/*
 
-/etc/init.d/apache2 restart
+service apache2 restart
