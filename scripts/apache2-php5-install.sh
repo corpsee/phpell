@@ -14,7 +14,7 @@ cd /home/vagrant/provision/scripts
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 
 mv -fv /etc/php5/apache2/php.ini /etc/php5/apache2/php.origin.ini
-cp -fv /vagrant/configs/php5/php."$MODE".ini /etc/php5/apache2/php.ini
+sed -e "s/%timezone%/${TIMEZONE}/g" /vagrant/configs/php5/php."$MODE".ini > /etc/php5/apache2/php.ini
 
 cp -fv /vagrant/configs/apache2/mods-dep/php5.conf /etc/apache2/mods-available/
 

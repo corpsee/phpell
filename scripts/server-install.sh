@@ -3,7 +3,7 @@
 HOST_IP=$1
 HOST_NAME=$2
 
-MODE="production"
+MODE="debug"
 TIMEZONE="Asia/Novosibirsk"
 LOCALE='ru_RU'
 
@@ -80,10 +80,12 @@ set_skel
 
 cd /home/vagrant/provision/scripts
 
-#./utils-install.sh
+./utils-install.sh
 
 ./java-install.sh                "$JAVA_VERSION"
 ./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
+#./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
 
 ./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
+#./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
 ./postgres-php5-install.sh
