@@ -15,5 +15,5 @@ mkdir -p /etc/nginx/sites-available
 
 mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
 
-/etc/init.d/nginx restart
+service nginx restart
 

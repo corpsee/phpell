@@ -16,6 +16,6 @@ eval "${COMMAND}"
 #pecl install SPL_Types
 
 mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
-sed -e "s/%timezone%/${TIMEZONE}/g" /vagrant/configs/php5/php."$MODE".ini > /etc/php5/cli/php.ini
+sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" /vagrant/configs/php5/php."$MODE".ini > /etc/php5/cli/php.ini
 
 [ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
