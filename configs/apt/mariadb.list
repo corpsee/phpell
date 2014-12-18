@@ -1,4 +1,3 @@
 # mariadb-server/mariadb-client
-
 deb http://mirror.timeweb.ru/mariadb/repo/10.0/debian wheezy main
 deb-src http://mirror.timeweb.ru/mariadb/repo/10.0/debian wheezy main
