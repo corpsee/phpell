@@ -13,4 +13,3 @@ echo "$WEB_USER:$WEB_USER_PASSWORD" | chpasswd
 
 chown -R "$WEB_USER:$WEB_GROUP" "$WEB_ROOT"
 chmod -R ug=rwX,o=rX "$WEB_ROOT"
-
