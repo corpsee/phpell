@@ -25,7 +25,7 @@ if [ -f $1 ] ; then
         *.7z)
             7z x $1 ;;
         *)
-            echo "'$1' cannot be extracted via >extract<" ;;
+            echo "'$1' cannot be extracted via <extract>" ;;
     esac
 else
     echo "'$1' is not a valid file"
