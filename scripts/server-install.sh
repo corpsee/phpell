@@ -44,6 +44,7 @@ set_packages() {
 set_editor() {
     [ -f "$EDITOR" ] && update-alternatives --set editor "$EDITOR"
     [ -f "$VIEW" ] &&   update-alternatives --set view   "$VIEW"
+    update-alternatives --get-selections
 }
 
 set_skel() {
