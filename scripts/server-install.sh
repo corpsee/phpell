@@ -12,13 +12,17 @@ WEB_USER="web"
 WEB_GROUP="www-data"
 WEB_USER_PASSWORD="web"
 
-JAVA_VERSION="8"
+JAVA_VERSION="8" #6|7|8
 
+MYSQL_VERSION="5.5" #5.5|5.6
 MYSQL_ROOT_PASSWORD='root'
 
 PACKAGES="mc curl htop git tar bzip2 unrar gzip unzip p7zip"
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif"
+
 PHP_EXTENSIONS="php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite"
+PHP_VERSION="5.5" #5.6|5.5|5.4
+
 EDITOR="/usr/bin/mcedit"
 VIEW="/usr/bin/mcview"
 
@@ -83,10 +87,10 @@ cd /home/vagrant/provision/scripts
 
 ./utils-install.sh
 
-./java-install.sh                "$JAVA_VERSION"
-./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
-#./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
+#./java-install.sh                "$JAVA_VERSION"
+./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+#./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
 
-./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
-#./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
-./postgres-php5-install.sh
+#./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
+./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
+#./postgres-php5-install.sh
