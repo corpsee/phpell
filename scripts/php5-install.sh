@@ -3,10 +3,20 @@
 MODE=$1
 TIMEZONE=$2
 PHP_EXTENSIONS=$3
+PHP_VERSION=$4
+
+if [ "$PHP_VERSION" == "5.4" ]; then
+    add-apt-repository ppa:ondrej/php5-oldstable
+elif [ "$PHP_VERSION" == "5.5" ]; then
+    add-apt-repository ppa:ondrej/php5
+else
+    add-apt-repository ppa:ondrej/php5-5.6
+fi
 
 #TODO: php-fpm + nginx
 #TODO: move timezone setting to script params
 #TODO: php from dotdeb or other last version
+DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev > /dev/null
 
