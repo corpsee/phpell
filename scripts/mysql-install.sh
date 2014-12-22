@@ -15,6 +15,7 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again p
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server mysql-client > /dev/null
 
+#TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mysql/my.cnf /etc/mysql/my.cnf
 

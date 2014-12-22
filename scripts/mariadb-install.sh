@@ -12,6 +12,7 @@ sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client > /dev/null
 
+#TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv /vagrant/configs/mariadb/my.cnf /etc/mysql/my.cnf
 
