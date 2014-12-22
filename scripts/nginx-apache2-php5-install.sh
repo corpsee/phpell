@@ -4,10 +4,11 @@ MODE=$1
 APACHE_MODS=$2
 TIMEZONE=$3
 PHP_EXTENSIONS=$4
+PHP_VERSION=$5
 
 cd /home/vagrant/provision/scripts
 
-./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS"
+./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-rpaf > /dev/null
 

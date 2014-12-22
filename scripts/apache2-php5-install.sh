@@ -4,12 +4,13 @@ MODE=$1
 APACHE_MODS=$2
 TIMEZONE=$3
 PHP_EXTENSIONS=$4
+PHP_VERSION=$5
 
 cd /home/vagrant/provision/scripts
 
-./php5-install.sh     "$MODE" "$TIMEZONE" "$PHP_EXTENSIONS"
-./composer-install.sh
 ./apache2-install.sh  "$MODE" "$APACHE_MODS"
+./php5-install.sh     "$MODE" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+./composer-install.sh
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 
