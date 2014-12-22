@@ -2,8 +2,7 @@
 
 JAVA_VERSION=$1
 
-cp -fv /vagrant/configs/apt/java.list /etc/apt/sources.list.d/java.list
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com EEA14886
+add-apt-repository ppa:webupd8team/java
 
 echo oracle-java"$JAVA_VERSION"-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections
 

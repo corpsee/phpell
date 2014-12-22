@@ -3,6 +3,9 @@
 MODE=$1
 APACHE_MODS=$2
 
+add-apt-repository ppa:ondrej/apache2
+
+DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 > /dev/null
 
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
