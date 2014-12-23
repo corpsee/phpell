@@ -64,10 +64,10 @@ cd /home/vagrant/provision/scripts
 
 ./utils-install.sh
 
-#./java-install.sh                "$JAVA_VERSION"
+./java-install.sh                "$JAVA_VERSION"
 ./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
 #./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
 
-#./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
-./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
+./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
+#./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
 ./postgres-php5-install.sh "$POSTGRESQL_VERSION"
