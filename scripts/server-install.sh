@@ -64,10 +64,22 @@ cd /home/vagrant/provision/scripts
 
 ./utils-install.sh
 
-./java-install.sh                "$JAVA_VERSION"
-./nginx-apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
-#./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+if [ "$INSTALL_JAVA" = true ]; then
+    ./java-install.sh "$JAVA_VERSION"
+fi
 
-./mariadb-php5-install.sh  "$MYSQL_ROOT_PASSWORD"
-#./mysql-php5-install.sh  "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
-./postgres-php5-install.sh "$POSTGRESQL_VERSION"
+if [ "$INSTALL_NGINX_APACHE2" = true ]; then
+    ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+elif [ "$INSTALL_APACHE2" = true ]; then
+    ./apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+fi
+
+if [ "$INSTALL_MARIADB" = true ]; then
+    ./mariadb-php5-install.sh "$MYSQL_ROOT_PASSWORD"
+elif [ "$INSTALL_MYSQL" = true ]; then
+    ./mysql-php5-install.sh "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
+fi
+
+if [ "$INSTALL_POSTGRES" = true ]; then
+    ./postgres-php5-install.sh "$POSTGRESQL_VERSION"
+fi

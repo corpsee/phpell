@@ -4,10 +4,17 @@ MODE="debug"
 TIMEZONE="Asia/Novosibirsk"
 LOCALE='ru_RU'
 
-WEB_ROOT="/var/www"
-WEB_USER="web"
-WEB_GROUP="www-data"
-WEB_USER_PASSWORD="web"
+INSTALL_JAVA=true
+INSTALL_NGINX_APACHE2=true
+INSTALL_APACHE2=false
+INSTALL_MARIADB=true
+INSTALL_MYSQL=false
+INSTALL_POSTGRES=true
+
+#WEB_ROOT="/var/www"
+#WEB_USER="web"
+#WEB_GROUP="www-data"
+#WEB_USER_PASSWORD="web"
 
 JAVA_VERSION="8" #6|7|8
 
