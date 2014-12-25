@@ -31,7 +31,8 @@ Install
 1. Edit configuration in Vagrantfile and config.sh
 
 2. Run Vagrant VM from console:
-```
+
+```bash
 cd /path/to/your/phpell
 vagrant up && vagrant ssh
 ```
