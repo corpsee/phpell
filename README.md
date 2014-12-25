@@ -1,5 +1,5 @@
-Vagrant VM with bash(sh) provision for PHP
-===========================================
+PHPell
+======
 
 PHPell is an open source Vagrant VM configuration with bash(sh) provision for PHP development.
 
