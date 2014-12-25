@@ -1,7 +1,7 @@
 PHPell
 ======
 
-PHPell is an open source Vagrant VM configuration with bash(sh) provision for PHP development.
+PHPell is an open source [Vagrant](https://www.vagrantup.com) VM configuration with bash(sh) provision for PHP development.
 
 It was inspired by [PuPHPet](http://puphpet.com) and [Phansible](http://phansible.com).
 
