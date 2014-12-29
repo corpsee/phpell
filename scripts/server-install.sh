@@ -62,16 +62,16 @@ set_skel
 
 cd /home/vagrant/provision/scripts
 
-./utils-install.sh
-
 if [ "$INSTALL_JAVA" = true ]; then
     ./java-install.sh "$JAVA_VERSION"
 fi
 
 if [ "$INSTALL_NGINX_APACHE2" = true ]; then
     ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+    ./utils-install.sh nginx_apache2
 elif [ "$INSTALL_APACHE2" = true ]; then
     ./apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+    ./utils-install.sh apache2
 fi
 
 if [ "$INSTALL_MARIADB" = true ]; then
