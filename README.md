@@ -22,7 +22,7 @@ TODO
 * Migrate to Ubuntu 14.10
 * Add Memcached;
 * Add Redis;
-* Add Mongo;
+* Add MongoDB;
 * Add Nginx + PHP-FPM;
 
 Installation
