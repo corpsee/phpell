@@ -25,16 +25,33 @@ TODO
 * Add Mongo;
 * Add Nginx + PHP-FPM;
 
-Install
--------
+Installation
+------------
 
 1. Edit configuration in Vagrantfile and config.sh
 
-2. Run Vagrant VM from console:
+2. Install Vagrant VM from console:
 
 ```bash
 cd /path/to/your/phpell
-vagrant up && vagrant ssh
+vagrant up
+```
+
+Usage
+-----
+
+Run Vagrant VM from console:
+
+```bash
+cd /path/to/your/phpell
+vagrant ssh
+```
+
+In the VM you can use helpers for virtual hosts: create-host, enable-host, disable-host. For example:
+
+```bash
+sudo create-host example.local
+sudo enable-host example.local
 ```
 
 License
