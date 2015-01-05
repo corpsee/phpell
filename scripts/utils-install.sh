@@ -9,3 +9,6 @@ cp -v /home/vagrant/provision/scripts/utils/"$SERVER_TYPE"/enable-host.sh  /usr/
 chmod 755 /usr/bin/create-host
 chmod 755 /usr/bin/disable-host
 chmod 755 /usr/bin/enable-host
+
+cp -v /home/vagrant/provision/scripts/utils/extract.sh /usr/bin/extract
+chmod 755 /usr/bin/extract
