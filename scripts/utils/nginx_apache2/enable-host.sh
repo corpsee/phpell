@@ -2,12 +2,14 @@
 
 test $# -eq 1 || exit
 
-if [ ! -f /etc/nginx/conf.d/"$1".conf ]; then
-    ln -sf /etc/nginx/sites-available/"$1".conf /etc/nginx/conf.d/"$1".conf
+HOST_NAME=$1
+
+if [ ! -f /etc/nginx/conf.d/"${HOST_NAME}".conf ]; then
+    ln -sf /etc/nginx/sites-available/"${HOST_NAME}".conf /etc/nginx/conf.d/"${HOST_NAME}".conf
 fi
 
-if [ ! -f /etc/apache2/sites-enabled/"$1".conf ]; then
-    ln -sf /etc/apache2/sites-available/"$1".conf /etc/apache2/sites-enabled/"$1".conf
+if [ ! -f /etc/apache2/sites-enabled/"${HOST_NAME}".conf ]; then
+    ln -sf /etc/apache2/sites-available/"${HOST_NAME}".conf /etc/apache2/sites-enabled/"${HOST_NAME}".conf
 fi
 
 service apache2 reload

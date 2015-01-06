@@ -19,3 +19,9 @@ chmod 755 /usr/bin/mysql-backup
 
 cp -v /home/vagrant/provision/scripts/utils/postgres-backup.sh /usr/bin/postgres-backup
 chmod 755 /usr/bin/postgres-backup
+
+cp -v /home/vagrant/provision/scripts/utils/create-web-user.sh /usr/bin/create-web-user
+chmod 755 /usr/bin/create-web-user
+
+cp -v /home/vagrant/provision/scripts/utils/create-postgres-db.sh /usr/bin/create-postgres-db
+chmod 755 /usr/bin/create-postgres-db
