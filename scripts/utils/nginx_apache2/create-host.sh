@@ -16,12 +16,12 @@ VHOST_APACHE2="<VirtualHost 127.0.0.1:8080>
         Require all granted
     </Directory>
 
-    ErrorLog  /var/www/${HOST_NAME}/logs/apache_error.log
+    ErrorLog  /var/www/${HOST_NAME}/logs/apache_errors.log
     CustomLog /var/www/${HOST_NAME}/logs/apache_access.log combined
 
     php_admin_value open_basedir      /var/www/${HOST_NAME}:/tmp
     php_admin_value session.save_path /var/www/${HOST_NAME}/sessions
-    php_admin_value error_log         /var/www/${HOST_NAME}/logs/php_error.log
+    php_admin_value error_log         /var/www/${HOST_NAME}/logs/php_errors.log
     php_admin_value upload_tmp_dir    /var/www/${HOST_NAME}/temp
 </VirtualHost>"
 
@@ -32,7 +32,7 @@ VHOST_NGINX="server {
     root /var/www/${HOST_NAME}/www;
 
     #access_log /var/www/${HOST_NAME}/logs/nginx_access.log;
-    error_log  /var/www/${HOST_NAME}/logs/nginx_error.log warn;
+    error_log  /var/www/${HOST_NAME}/logs/nginx_errors.log warn;
 
     location ~* \.(htm|html|xhtml|jpg|jpeg|gif|png|css|zip|tar|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|wav|bmp|rtf|swf|ico|flv|txt|docx|xlsx)$ {
         error_page 404 405 502 504 500 = @apache;
