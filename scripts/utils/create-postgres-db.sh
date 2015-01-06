@@ -7,3 +7,5 @@ DB_PASSWORD=$3
 sudo -u postgres psql -c "CREATE USER \"${DB_USER}\" WITH PASSWORD '${DB_PASSWORD}';"
 sudo -u postgres psql -c "CREATE DATABASE \"${DB_NAME}\";"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE \"${DB_NAME}\" TO \"${DB_USER}\";"
+
+sudo -u "${DB_USER}" psql -U "${DB_USER}" -d "${DB_NAME}"
