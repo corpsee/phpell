@@ -66,7 +66,6 @@ cd /var/www
 mkdir -p ./"${HOST_NAME}"/www
 mkdir -p ./"${HOST_NAME}"/sessions
 mkdir -p ./"${HOST_NAME}"/temp
-mkdir -p ./"${HOST_NAME}"/logs
 
 echo "<?php phpinfo(); " > ./"${HOST_NAME}"/www/index.php
 
@@ -75,4 +74,13 @@ chown -R "${HOST_NAME}:www-data" ./"${HOST_NAME}"
 chmod -R u=rwX,go=rX    ./"${HOST_NAME}"
 chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/sessions
 chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/temp
-chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/logs
+
+mkdir -p /var/backups/"${HOST_NAME}"
+chown -R "${HOST_NAME}:www-data" /var/backups/"${HOST_NAME}"
+chmod -R u=rwX,go=rX             /var/backups/"${HOST_NAME}"
+
+mkdir -p /var/log/"${HOST_NAME}"
+chown -R "${HOST_NAME}:www-data" /var/log/"${HOST_NAME}"
+chmod -R u=rwX,go=rX             /var/log/"${HOST_NAME}"
+
+ln -sv /var/www/"${HOST_NAME}"/logs /var/log/"${HOST_NAME}"
