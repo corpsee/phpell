@@ -2,6 +2,8 @@
 
 test $# -eq 1 || exit
 
-rm -f /etc/apache2/sites-enabled/"$1".conf
+HOST_NAME=$1
+
+rm -f /etc/apache2/sites-enabled/"${HOST_NAME}".conf
 
 service apache2 reload
