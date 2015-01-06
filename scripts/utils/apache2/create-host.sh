@@ -16,12 +16,12 @@ VHOST_APACHE2="<VirtualHost *:80>
         Require all granted
     </Directory>
 
-    ErrorLog  /var/www/${HOST_NAME}/logs/apache_error.log
+    ErrorLog  /var/www/${HOST_NAME}/logs/apache_errors.log
     CustomLog /var/www/${HOST_NAME}/logs/apache_access.log combined
 
     php_admin_value open_basedir      /var/www/${HOST_NAME}:/tmp
     php_admin_value session.save_path /var/www/${HOST_NAME}/sessions
-    php_admin_value error_log         /var/www/${HOST_NAME}/logs/php_error.log
+    php_admin_value error_log         /var/www/${HOST_NAME}/logs/php_errors.log
     php_admin_value upload_tmp_dir    /var/www/${HOST_NAME}/temp
 </VirtualHost>"
 
