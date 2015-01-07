@@ -25,3 +25,6 @@ chmod 755 /usr/bin/create-web-user
 
 cp -v /home/vagrant/provision/scripts/utils/create-postgres-db.sh /usr/bin/create-postgres-db
 chmod 755 /usr/bin/create-postgres-db
+
+cp -v /home/vagrant/provision/scripts/utils/create-mysql-db.sh /usr/bin/create-mysql-db
+chmod 755 /usr/bin/create-mysql-db
