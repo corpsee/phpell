@@ -2,8 +2,11 @@
 
 MODE=$1
 
-cp -fv /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
-wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
+#cp -fv /vagrant/configs/apt/nginx.list   /etc/apt/sources.list.d/nginx.list
+#wget -qO - http://nginx.org/keys/nginx_signing.key | apt-key add -
+
+add-apt-repository ppa:nginx/stable
+#add-apt-repository ppa:nginx/development
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install nginx > /dev/null
@@ -13,7 +16,7 @@ cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
 
 mkdir -p /etc/nginx/sites-available
 
-mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
+#mv -fv /etc/nginx/conf.d/* /etc/nginx/sites-available
 
 service nginx restart
 
