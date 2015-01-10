@@ -29,5 +29,7 @@ APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir e
 PHP_EXTENSIONS="php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite"
 PHP_VERSION="5.5" #5.6|5.5|5.4
 
+NGINX_VERSION="1.6" #1.6|1.7
+
 EDITOR="/usr/bin/mcedit"
 VIEW="/usr/bin/mcview"
