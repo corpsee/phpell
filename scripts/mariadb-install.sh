@@ -1,9 +1,13 @@
 #!/bin/bash
 
 MYSQL_ROOT_PASSWORD=$1
+MARIADB_VERSION=$2
 
-cp -f /vagrant/configs/apt/mariadb.list /etc/apt/sources.list.d/mariadb.list
-apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xcbcb082a1bb943db
+if [ "$MARIADB_VERSION" == "5.5" ]; then
+    add-apt-repository ppa:ondrej/mariadb-5.5
+else
+    add-apt-repository ppa:ondrej/mariadb-10.0
+fi
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 

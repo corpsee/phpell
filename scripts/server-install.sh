@@ -75,7 +75,7 @@ elif [ "$INSTALL_APACHE2" = true ]; then
 fi
 
 if [ "$INSTALL_MARIADB" = true ]; then
-    ./mariadb-php5-install.sh "$MYSQL_ROOT_PASSWORD"
+    ./mariadb-php5-install.sh "$MYSQL_ROOT_PASSWORD" "$MARIADB_VERSION"
 elif [ "$INSTALL_MYSQL" = true ]; then
     ./mysql-php5-install.sh "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
 fi
