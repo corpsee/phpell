@@ -67,7 +67,7 @@ if [ "$INSTALL_JAVA" = true ]; then
 fi
 
 if [ "$INSTALL_NGINX_APACHE2" = true ]; then
-    ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+    ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION" "$NGINX_VERSION"
     ./utils-install.sh nginx_apache2
 elif [ "$INSTALL_APACHE2" = true ]; then
     ./apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
@@ -75,7 +75,7 @@ elif [ "$INSTALL_APACHE2" = true ]; then
 fi
 
 if [ "$INSTALL_MARIADB" = true ]; then
-    ./mariadb-php5-install.sh "$MYSQL_ROOT_PASSWORD"
+    ./mariadb-php5-install.sh "$MYSQL_ROOT_PASSWORD" "$MARIADB_VERSION"
 elif [ "$INSTALL_MYSQL" = true ]; then
     ./mysql-php5-install.sh "$MYSQL_ROOT_PASSWORD" "$MYSQL_VERSION"
 fi

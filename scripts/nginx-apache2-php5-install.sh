@@ -5,6 +5,7 @@ APACHE_MODS=$2
 TIMEZONE=$3
 PHP_EXTENSIONS=$4
 PHP_VERSION=$5
+NGINX_VERSION=$6
 
 cd /home/vagrant/provision/scripts
 
@@ -20,4 +21,4 @@ cp -fv /vagrant/configs/apache2/mods-dep/rpaf.conf /etc/apache2/mods-available/
 a2enmod rpaf
 service apache2 restart
 
-./nginx-install.sh "$MODE"
+./nginx-install.sh "$MODE" "$NGINX_VERSION"
