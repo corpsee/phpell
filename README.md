@@ -51,7 +51,7 @@ Helpers
 
 In the VM you can use helpers for virtual hosts:
 
-* Helper `create-host` create new host and new user (has name as new host) and `create-web-user` create only new user:
+1. Helper `create-host` create new host and new user (has name as new host) and `create-web-user` create only new user:
     
     ```bash
     sudo create-host example.local password_for_example
