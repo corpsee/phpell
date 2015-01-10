@@ -11,15 +11,14 @@ PHPell includes:
 * Oracle Java 6|7|8;
 * Latest Apache 2.4;
 * PHP 5.4|5.5|5.6;
-* Latest Nginx;
+* Nginx 1.6|1.7;
 * MySQL 5.5|5.6;
-* MariaDB 10;
+* MariaDB 5.5|10.0;
 * PostgreSQL 9.3|9.4;
 
 TODO
 ----
 
-* Migrate to Ubuntu 14.10
 * Add Memcached;
 * Add Redis;
 * Add MongoDB;
