@@ -67,7 +67,7 @@ if [ "$INSTALL_JAVA" = true ]; then
 fi
 
 if [ "$INSTALL_NGINX_APACHE2" = true ]; then
-    ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+    ./nginx-apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION" "$NGINX_VERSION"
     ./utils-install.sh nginx_apache2
 elif [ "$INSTALL_APACHE2" = true ]; then
     ./apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
