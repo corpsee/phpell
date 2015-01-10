@@ -9,7 +9,7 @@ PHPell includes:
 
 * Vagrant VM with Ubuntu 14.10 and bash(shell) provision.
 * Oracle Java 8 (6, 7);
-* Latest Apache 2.4;
+* Apache 2.4;
 * PHP 5.6 (5.5, 5.6);
 * Nginx 1.7 (1.6);
 * MySQL 5.6 (5.6);
