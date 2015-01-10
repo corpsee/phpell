@@ -13,7 +13,10 @@ sudo debconf-set-selections <<< "mysql-server mysql-server/root_password passwor
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password_again password $MYSQL_ROOT_PASSWORD"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
-DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server mysql-client > /dev/null
+DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server- mysql-client > /dev/null
+
+COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server-${MYSQL_VERSION} mysql-client-${MYSQL_VERSION} > /dev/null"
+eval "${COMMAND}"
 
 #TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
