@@ -8,13 +8,13 @@ It was inspired by [PuPHPet](http://puphpet.com) and [Phansible](http://phansibl
 PHPell includes:
 
 * Vagrant VM with Ubuntu 14.10 and bash(shell) provision.
-* Oracle Java 6|7|8;
+* Oracle Java 8 (6, 7);
 * Latest Apache 2.4;
-* PHP 5.4|5.5|5.6;
-* Nginx 1.6|1.7;
-* MySQL 5.5|5.6;
-* MariaDB 5.5|10.0;
-* PostgreSQL 9.3|9.4;
+* PHP 5.6 (5.5, 5.6);
+* Nginx 1.7 (1.6);
+* MySQL 5.6 (5.6);
+* MariaDB 10.0 (5.5);
+* PostgreSQL 9.4 (9.3);
 
 TODO
 ----
@@ -23,6 +23,7 @@ TODO
 * Add Redis;
 * Add MongoDB;
 * Add Nginx + PHP-FPM;
+* Add HHVM
 
 Installation
 ------------
