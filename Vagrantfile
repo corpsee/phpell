@@ -2,9 +2,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    #TODO: Migrate to larryli/utopic64
-    config.vm.box      = "ubuntu/trusty64"
-    config.vm.hostname = "phpell-ubuntu1404"
+    config.vm.box      = "larryli/utopic64"
+    config.vm.hostname = "phpell-ubuntu-1410"
 
     #TODO: Moving hostname, ip, timezone and other to config
     config.vm.network :private_network, ip: "192.168.56.10"
