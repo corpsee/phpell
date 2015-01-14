@@ -72,6 +72,9 @@ if [ "$INSTALL_NGINX_APACHE2" = true ]; then
 elif [ "$INSTALL_APACHE2" = true ]; then
     ./apache2-php5-install.sh "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
     ./utils-install.sh apache2
+elif [ "$INSTALL_NGINX" = true ]; then
+    ./nginx-php5-install.sh "$MODE" "$NGINX_VERSION" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+    ./utils-install.sh nginx
 fi
 
 if [ "$INSTALL_MARIADB" = true ]; then
