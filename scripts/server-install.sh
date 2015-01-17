@@ -67,19 +67,19 @@ if [ "${INSTALL_JAVA}" = true ]; then
 fi
 
 if [ "${INSTALL_NGINX_APACHE2}" = true ]; then
-    ./nginx-apache2-php5-install.sh "${MODE}" "${APACHE_MODS}" "{$TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
-    ./utils-install.sh nginx_apache2
+    ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "{$TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
+    ./utils-install.sh "${SCRIPT_DIR}" nginx_apache2
 elif [ "${INSTALL_APACHE2}" = true ]; then
-    ./apache2-php5-install.sh "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
-    ./utils-install.sh apache2
+    ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
+    ./utils-install.sh "${SCRIPT_DIR}" apache2
 fi
 
 if [ "${INSTALL_MARIADB}" = true ]; then
-    ./mariadb-php5-install.sh "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
+    ./mariadb-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
 elif [ "${INSTALL_MYSQL}" = true ]; then
-    ./mysql-php5-install.sh "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
+    ./mysql-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
 fi
 
 if [ "${INSTALL_POSTGRES}" = true ]; then
-    ./postgres-php5-install.sh "{$POSTGRESQL_VERSION}"
+    ./postgres-php5-install.sh "${SCRIPT_DIR}" "{$POSTGRESQL_VERSION}"
 fi
