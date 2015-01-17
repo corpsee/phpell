@@ -4,9 +4,9 @@ MYSQL_ROOT_PASSWORD=$1
 MARIADB_VERSION=$2
 
 if [ "$MARIADB_VERSION" == "5.5" ]; then
-    add-apt-repository ppa:ondrej/mariadb-5.5
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-5.5
 else
-    add-apt-repository ppa:ondrej/mariadb-10.0
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-10.0
 fi
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null

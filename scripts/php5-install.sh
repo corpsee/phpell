@@ -6,11 +6,11 @@ PHP_EXTENSIONS=$3
 PHP_VERSION=$4
 
 if [ "$PHP_VERSION" == "5.4" ]; then
-    add-apt-repository ppa:ondrej/php5-oldstable
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-oldstable
 elif [ "$PHP_VERSION" == "5.5" ]; then
-    add-apt-repository ppa:ondrej/php5
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5
 else
-    add-apt-repository ppa:ondrej/php5-5.6
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-5.6
 fi
 
 #TODO: php-fpm + nginx

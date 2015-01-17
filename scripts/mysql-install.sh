@@ -4,9 +4,9 @@ MYSQL_ROOT_PASSWORD=$1
 MYSQL_VERSION=$2
 
 if [ "$MYSQL_VERSION" == "5.5" ]; then
-    add-apt-repository ppa:ondrej/mysql-5.5
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mysql-5.5
 else
-    add-apt-repository ppa:ondrej/mysql-5.6
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mysql-5.6
 fi
 
 sudo debconf-set-selections <<< "mysql-server mysql-server/root_password password $MYSQL_ROOT_PASSWORD"
