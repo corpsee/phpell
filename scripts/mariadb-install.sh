@@ -16,6 +16,8 @@ sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password passw
 sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client > /dev/null
+COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server-${MARIADB_VERSION} mariadb-client-${MARIADB_VERSION} > /dev/null"
+eval "${COMMAND}"
 
 #TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
