@@ -4,9 +4,9 @@ MODE=$1
 NGINX_VERSION=$2
 
 if [ "$NGINX_VERSION" == "1.6" ]; then
-    add-apt-repository ppa:nginx/stable
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/stable
 else
-    add-apt-repository ppa:nginx/development
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/development
 fi
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
