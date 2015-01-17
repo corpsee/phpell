@@ -52,34 +52,32 @@ set_skel() {
     chmod -R u=rwX,go=rX /etc/skel
 }
 
-sudo -i
-
-set_packages
-set_locales
-set_timezone
-set_editor
-set_skel
+sudo set_packages
+sudo set_locales
+sudo set_timezone
+sudo set_editor
+sudo set_skel
 
 cd "${SCRIPT_DIR}/scripts"
 
 if [ "${INSTALL_JAVA}" = true ]; then
-    ./java-install.sh "$JAVA_VERSION"
+    sudo ./java-install.sh "$JAVA_VERSION"
 fi
 
 if [ "${INSTALL_NGINX_APACHE2}" = true ]; then
-    ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "{$TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
-    ./utils-install.sh "${SCRIPT_DIR}" nginx_apache2
+    sudo ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "{$TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
+    sudo ./utils-install.sh "${SCRIPT_DIR}" nginx_apache2
 elif [ "${INSTALL_APACHE2}" = true ]; then
-    ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
-    ./utils-install.sh "${SCRIPT_DIR}" apache2
+    sudo ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
+    sudo ./utils-install.sh "${SCRIPT_DIR}" apache2
 fi
 
 if [ "${INSTALL_MARIADB}" = true ]; then
-    ./mariadb-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
+    sudo ./mariadb-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
 elif [ "${INSTALL_MYSQL}" = true ]; then
-    ./mysql-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
+    sudo ./mysql-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
 fi
 
 if [ "${INSTALL_POSTGRES}" = true ]; then
-    ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
+    sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
 fi
