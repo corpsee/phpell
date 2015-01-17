@@ -1,13 +1,14 @@
 #!/bin/bash
 
-MODE=$1
-TIMEZONE=$2
-PHP_EXTENSIONS=$3
-PHP_VERSION=$4
+SCRIPT_DIR=$1
+MODE=$2
+TIMEZONE=$3
+PHP_EXTENSIONS=$4
+PHP_VERSION=$5
 
-if [ "$PHP_VERSION" == "5.4" ]; then
+if [ "${PHP_VERSION}" == "5.4" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-oldstable
-elif [ "$PHP_VERSION" == "5.5" ]; then
+elif [ "${PHP_VERSION}" == "5.5" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5
 else
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-5.6
@@ -26,6 +27,6 @@ eval "${COMMAND}"
 #pecl install SPL_Types
 
 mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
-sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" /vagrant/configs/php5/php."$MODE".ini > /etc/php5/cli/php.ini
+sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" "${SCRIPT_DIR}/configs/php5/php.${MODE}.ini" > /etc/php5/cli/php.ini
 
 [ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
