@@ -26,7 +26,7 @@ ln -sv /etc/apache2/conf-available/charset.conf                 /etc/apache2/con
 ln -sv /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
 ln -sv /etc/apache2/conf-available/security.conf                /etc/apache2/conf-enabled/security.conf
 
-cp -fv "${SCRIPT_DIR}/configs/apache2/mods/*.conf" /etc/apache2/mods-available/
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/"*.conf /etc/apache2/mods-available/
 rm -fv /etc/apache2/mods-enabled/*
 
 COMMAND="a2enmod ${APACHE_MODS}"
