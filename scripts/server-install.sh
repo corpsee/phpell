@@ -81,5 +81,5 @@ elif [ "${INSTALL_MYSQL}" = true ]; then
 fi
 
 if [ "${INSTALL_POSTGRES}" = true ]; then
-    ./postgres-php5-install.sh "${SCRIPT_DIR}" "{$POSTGRESQL_VERSION}"
+    ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
 fi
