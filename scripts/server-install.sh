@@ -1,7 +1,7 @@
 #!/bin/bash
 
-SCRIPT_DIR="/home/vagrant/provision"
-source "$SCRIPT_DIR/config.sh"
+SCRIPT_DIR=$1
+source "{$SCRIPT_DIR}config.sh"
 
 set_locales() {
     locale-gen "en_US.utf8"
@@ -60,7 +60,7 @@ set_timezone
 set_editor
 set_skel
 
-cd /home/vagrant/provision/scripts
+cd "{$SCRIPT_DIR}scripts"
 
 if [ "$INSTALL_JAVA" = true ]; then
     ./java-install.sh "$JAVA_VERSION"
