@@ -11,9 +11,11 @@ COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql-${POSTGRE
 eval "${COMMAND}"
 
 #TODO: variable for memory setting
-mv -fv "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf" "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.origin.conf"
+COMMAND="mv -fv /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.origin.conf"
+eval "${COMMAND}"
 
-sed -e "s:\${POSTGRESQL_VERSION}:${POSTGRESQL_VERSION}:g" "${SCRIPT_DIR}/configs/postgres/postgresql.conf" > "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf"
+COMMAND="sed -e 's:\${POSTGRESQL_VERSION}:${POSTGRESQL_VERSION}:g' ${SCRIPT_DIR}/configs/postgres/postgresql.conf > /etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf"
+eval "${COMMAND}"
 
 service postgresql restart
 
