@@ -91,10 +91,10 @@ In the VM you can use helpers for virtual hosts:
     sudo -u example.local psql -U example.local -d example_db
     ```
 
-7. Helper `mysql-postgres` zip and backup Postgres DB to `/var/backups/example.local` directory:
+7. Helper `postgres-backup` zip and backup Postgres DB to `/var/backups/example.local` directory:
 
     ```bash
-    mysql-postgres example_db example.local password_for_example
+    postgres-backup example_db example.local
     ```
 
 License

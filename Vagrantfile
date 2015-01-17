@@ -19,5 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
     config.vm.provision "shell" do |s|
         s.path = "scripts/server-install.sh"
+        s.args = "/home/vagrant/provision"
     end
 end

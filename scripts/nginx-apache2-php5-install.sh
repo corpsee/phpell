@@ -1,24 +1,25 @@
 #!/bin/bash
 
-MODE=$1
-APACHE_MODS=$2
-TIMEZONE=$3
-PHP_EXTENSIONS=$4
-PHP_VERSION=$5
-NGINX_VERSION=$6
+SCRIPT_DIR=$1
+MODE=$2
+APACHE_MODS=$3
+TIMEZONE=$4
+PHP_EXTENSIONS=$5
+PHP_VERSION=$6
+NGINX_VERSION=$7
 
-cd /home/vagrant/provision/scripts
+cd "${SCRIPT_DIR}/scripts"
 
-./apache2-php5-install.sh  "$MODE" "$APACHE_MODS" "$TIMEZONE" "$PHP_EXTENSIONS" "$PHP_VERSION"
+./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-rpaf > /dev/null
 
-cp -fv /vagrant/configs/apache2-dep/ports.conf           /etc/apache2/ports.conf
-cp -fv /vagrant/configs/apache2-dep/apache2."$MODE".conf /etc/apache2/apache2.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2-dep/ports.conf"           /etc/apache2/ports.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2-dep/apache2.${MODE}.conf" /etc/apache2/apache2.conf
 
-cp -fv /vagrant/configs/apache2/mods-dep/rpaf.conf /etc/apache2/mods-available/
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods-dep/rpaf.conf" /etc/apache2/mods-available/
 
 a2enmod rpaf
 service apache2 restart
 
-./nginx-install.sh "$MODE" "$NGINX_VERSION"
+./nginx-install.sh "${SCRIPT_DIR}" "${MODE}" "${NGINX_VERSION}"

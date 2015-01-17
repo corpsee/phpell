@@ -1,10 +1,11 @@
 #!/bin/bash
 
-POSTGRESQL_VERSION=$1
+SCRIPT_DIR=$1
+POSTGRESQL_VERSION=$2
 
-cd /home/vagrant/provision/scripts
+cd "${SCRIPT_DIR}/scripts"
 
-./postgres-install.sh "$POSTGRESQL_VERSION"
+./postgres-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql > /dev/null
 
