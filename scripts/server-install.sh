@@ -4,6 +4,7 @@ SCRIPT_DIR=$1
 source "${SCRIPT_DIR}/config.sh"
 
 cd "${SCRIPT_DIR}/scripts"
+sudo chmod -R +x ../config.sh && sudo chmod -R +x ./
 
 sudo server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
 
