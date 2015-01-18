@@ -23,7 +23,7 @@ eval "${COMMAND}"
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv "${SCRIPT_DIR}/configs/mysql/my.cnf" /etc/mysql/my.cnf
 
-rm /var/lib/mysql/ib_logfile*
+rm -fv /var/lib/mysql/ib_logfile*
 
 service mysql restart
 
