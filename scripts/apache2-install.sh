@@ -4,7 +4,7 @@ SCRIPT_DIR=$1
 MODE=$2
 APACHE_MODS=$3
 
-DEBIAN_FRONTEND=noninteractive add-apt-repository ppa:ondrej/apache2
+DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/apache2
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install apache2 > /dev/null
