@@ -32,32 +32,7 @@ set_editor() {
     update-alternatives --get-selections
 }
 
-set_skel() {
-    cd "${SCRIPT_DIR}/configs/skel-root"
-
-    cp -vf ./.profile     /root
-    cp -vf ./.bashrc      /root
-    cp -vf ./.bash_logout /root
-
-    cd "${SCRIPT_DIR}/configs/skel"
-
-    [ -d /home/vagrant ] && cp -vf ./.profile     /home/vagrant
-    [ -d /home/vagrant ] && cp -vf ./.bashrc      /home/vagrant
-    [ -d /home/vagrant ] && cp -vf ./.bash_logout /home/vagrant
-
-    [ -d /home/vagrant ] && chown -R vagrant:vagrant /home/vagrant/*
-    [ -d /home/vagrant ] && chmod -R u=rwX,go=rX     /home/vagrant/*
-
-    cp -vf ./.profile     /etc/skel
-    cp -vf ./.bashrc      /etc/skel
-    cp -vf ./.bash_logout /etc/skel
-
-    chown -R root:root   /etc/skel
-    chmod -R u=rwX,go=rX /etc/skel
-}
-
 set_packages
 set_locales
 set_timezone
 set_editor
-set_skel
