@@ -31,3 +31,7 @@ fi
 if [ "${INSTALL_POSTGRES}" = true ]; then
     sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
 fi
+
+if [ "${INSTALL_MEMCACHED}" = true ]; then
+    sudo ./memcached-php5-install.sh
+fi
