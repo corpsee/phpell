@@ -33,5 +33,5 @@ if [ "${INSTALL_POSTGRES}" = true ]; then
 fi
 
 if [ "${INSTALL_MEMCACHED}" = true ]; then
-    sudo ./memcached-php5-install.sh
+    sudo ./memcached-php5-install.sh "${SCRIPT_DIR}" "${MEMCACHED_MEMCACHE}" "${MEMCACHED_MEMCACHED}"
 fi

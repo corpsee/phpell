@@ -29,5 +29,8 @@ PHP_VERSION="5.6" #5.6|5.5|5.4
 
 NGINX_VERSION="1.7" #1.6|1.7
 
+MEMCACHED_MEMCACHE=true
+MEMCACHED_MEMCACHED=true
+
 EDITOR="/usr/bin/mcedit"
 VIEW="/usr/bin/mcview"
