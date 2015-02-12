@@ -50,7 +50,7 @@ vagrant ssh
 Helpers
 -------
 
-In the VM you can use helpers for virtual hosts:
+In the VM you can use helpers for virtual hosts and databases management:
 
 1. Helper `create-host` create new host and new user (has name as new host) and `create-web-user` create only new user:
     
