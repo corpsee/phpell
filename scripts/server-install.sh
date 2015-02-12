@@ -6,7 +6,9 @@ source "${SCRIPT_DIR}/config.sh"
 cd "${SCRIPT_DIR}/scripts"
 sudo chmod -R +x ../config.sh && sudo chmod -R +x ./
 
-sudo ./server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
+if [ "${INIT_SERVER}" = true ]; then
+    sudo ./server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
+fi
 
 if [ "${INSTALL_JAVA}" = true ]; then
     sudo ./java-install.sh "${JAVA_VERSION}"
