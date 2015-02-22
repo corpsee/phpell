@@ -5,7 +5,9 @@ source "${SCRIPT_DIR}/config.sh"
 
 cd "${SCRIPT_DIR}/scripts"
 
-sudo ./server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
+if [ "${INIT_SERVER}" = true ]; then
+    sudo ./server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
+fi
 
 if [ "${INSTALL_JAVA}" = true ]; then
     sudo ./java-install.sh "${JAVA_VERSION}"
@@ -30,4 +32,8 @@ fi
 
 if [ "${INSTALL_POSTGRES}" = true ]; then
     sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
+fi
+
+if [ "${INSTALL_MEMCACHED}" = true ]; then
+    sudo ./memcached-php5-install.sh "${SCRIPT_DIR}" "${MEMCACHED_MEMCACHE}" "${MEMCACHED_MEMCACHED}"
 fi

@@ -15,11 +15,11 @@ PHPell includes:
 * MySQL 5.6 (5.6);
 * MariaDB 10.0 (5.5);
 * PostgreSQL 9.4 (9.3);
+* Memcached 1.4 (+ Memcache/Memcached PHP extensions);
 
 TODO
 ----
 
-* Add Memcached;
 * Add Redis;
 * Add MongoDB;
 * Add Nginx + PHP-FPM;
@@ -50,7 +50,7 @@ vagrant ssh
 Helpers
 -------
 
-In the VM you can use helpers for virtual hosts:
+In the VM you can use helpers for virtual hosts and databases management:
 
 1. Helper `create-host` create new host and new user (has name as new host) and `create-web-user` create only new user:
     
