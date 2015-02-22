@@ -15,11 +15,11 @@ PHPell includes:
 * MySQL 5.6 (5.6);
 * MariaDB 10.0 (5.5);
 * PostgreSQL 9.4 (9.3);
+* Memcached 1.4 (+ Memcache/Memcached PHP extensions);
 
 TODO
 ----
 
-* Add Memcached;
 * Add Redis;
 * Add MongoDB;
 * Add Nginx + PHP-FPM;
