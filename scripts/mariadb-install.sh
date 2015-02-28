@@ -19,7 +19,6 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client
 COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server-${MARIADB_VERSION} mariadb-client-${MARIADB_VERSION} > /dev/null"
 eval "${COMMAND}"
 
-#TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv "${SCRIPT_DIR}/configs/mariadb/my.cnf" /etc/mysql/my.cnf
 

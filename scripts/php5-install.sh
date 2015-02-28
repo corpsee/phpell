@@ -14,9 +14,6 @@ else
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-5.6
 fi
 
-#TODO: php-fpm + nginx
-#TODO: move timezone setting to script params
-#TODO: php from dotdeb or other last version
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev > /dev/null

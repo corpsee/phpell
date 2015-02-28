@@ -19,7 +19,6 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server- mysql-client > 
 COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server-${MYSQL_VERSION} mysql-client-${MYSQL_VERSION} > /dev/null"
 eval "${COMMAND}"
 
-#TODO: variable for memory setting
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv "${SCRIPT_DIR}/configs/mysql/my.cnf" /etc/mysql/my.cnf
 
