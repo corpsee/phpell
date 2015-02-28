@@ -5,7 +5,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.box      = "larryli/utopic64"
     config.vm.hostname = "phpell-ubuntu-1410"
 
-    #TODO: Moving hostname, ip, timezone and other to config
     config.vm.network :private_network, ip: "192.168.56.10"
 
     config.vm.synced_folder "./", "/home/vagrant/provision", id: "vagrant-root",
