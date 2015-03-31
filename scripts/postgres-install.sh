@@ -10,7 +10,6 @@ DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install postgresql-${POSTGRESQL_VERSION} > /dev/null"
 eval "${COMMAND}"
 
-#TODO: variable for memory setting
 mv -fv "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf" "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.origin.conf"
 sed -e "s:\${POSTGRESQL_VERSION}:${POSTGRESQL_VERSION}:g" "${SCRIPT_DIR}/configs/postgres/postgresql.conf" > "/etc/postgresql/${POSTGRESQL_VERSION}/main/postgresql.conf"
 
