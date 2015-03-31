@@ -1,21 +1,21 @@
 #!/bin/bash
 
-MODE=$1
-NGINX_VERSION=$2
+SCRIPT_DIR=$1
+MODE=$2
+NGINX_VERSION=$3
 
-if [ "$NGINX_VERSION" == "1.6" ]; then
-    add-apt-repository ppa:nginx/stable
+if [ "${NGINX_VERSION}" == "1.6" ]; then
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/stable
 else
-    add-apt-repository ppa:nginx/development
+    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/development
 fi
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install nginx > /dev/null
 
 mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
-cp -fv /vagrant/configs/nginx/nginx."$MODE".conf /etc/nginx/nginx.conf
+cp -fv "${SCRIPT_DIR}/configs/nginx/nginx.${MODE}.conf" /etc/nginx/nginx.conf
 
 rm -fv /etc/nginx/sites-enabled/*
 
 service nginx restart
-
