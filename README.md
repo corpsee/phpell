@@ -100,4 +100,4 @@ In the VM you can use helpers for virtual hosts and databases management:
 License
 -------
 
-The PHPell is open source software licensed under the GPLv3 license.
+The PHPell is open source software licensed under the GPL-3.0 license.

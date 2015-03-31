@@ -19,4 +19,3 @@ cp -fv "${SCRIPT_DIR}/configs/nginx/nginx.${MODE}.conf" /etc/nginx/nginx.conf
 rm -fv /etc/nginx/sites-enabled/*
 
 service nginx restart
-
