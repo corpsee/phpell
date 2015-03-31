@@ -25,7 +25,7 @@ VHOST_NGINX="server {
     }
 
     location @fpm {
-        fastcgi_pass   127.0.0.1:9000;
+        fastcgi_pass   127.0.0.1:9001;
         fastcgi_index  index.php;
         fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
         
@@ -57,4 +57,4 @@ mkdir -p /var/log/"${HOST_NAME}"
 chown -R "${HOST_NAME}:www-data" /var/log/"${HOST_NAME}"
 chmod -R u=rwX,go=rX             /var/log/"${HOST_NAME}"
 
-ln -sv /var/www/"${HOST_NAME}"/logs /var/log/"${HOST_NAME}"
+ln -sv /var/log/"${HOST_NAME}" /var/www/"${HOST_NAME}"/logs

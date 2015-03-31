@@ -49,4 +49,4 @@ mkdir -p /var/log/"${HOST_NAME}"
 chown -R "${HOST_NAME}:www-data" /var/log/"${HOST_NAME}"
 chmod -R u=rwX,go=rX             /var/log/"${HOST_NAME}"
 
-ln -sv /var/www/"${HOST_NAME}"/logs /var/log/"${HOST_NAME}"
+ln -sv /var/log/"${HOST_NAME}" /var/www/"${HOST_NAME}"/logs
