@@ -16,6 +16,7 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install nginx > /dev/null
 mv -fv /etc/nginx/nginx.conf /etc/nginx/nginx.origin.conf
 cp -fv "${SCRIPT_DIR}/configs/nginx/nginx.${MODE}.conf" /etc/nginx/nginx.conf
 
+[ ! -d /etc/nginx/sites-enabled ] && mkdir -p /etc/nginx/sites-enabled
 rm -fv /etc/nginx/sites-enabled/*
 
 service nginx restart
