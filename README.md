@@ -10,7 +10,10 @@ PHPell includes:
 * Vagrant VM with Ubuntu 14.10 and bash(shell) provision.
 * Oracle Java 8 (6, 7);
 * Apache 2.4;
-* PHP 5.6 (5.5, 5.6);
+* PHP 5.6 (5.5, 5.6)
+    * Apache2 + php_mod,
+    * Nginx + Apache2 + php_mod,
+    * Nginx + PHP-FPM;
 * Nginx 1.7 (1.6);
 * MySQL 5.6 (5.6);
 * MariaDB 10.0 (5.5);
@@ -22,7 +25,6 @@ TODO
 
 * Add Redis;
 * Add MongoDB;
-* Add Nginx + PHP-FPM;
 * Add HHVM
 
 Installation
