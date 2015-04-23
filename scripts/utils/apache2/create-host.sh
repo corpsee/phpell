@@ -29,6 +29,9 @@ cd /etc
 echo "${VHOST_APACHE2}" > ./apache2/sites-available/"${HOST_NAME}".conf
 
 cd /var/www
+chown root:www-data /var/www
+chmod ug=rwX,o=rX   /var/www
+
 mkdir -p ./"${HOST_NAME}"/www
 mkdir -p ./"${HOST_NAME}"/sessions
 mkdir -p ./"${HOST_NAME}"/temp
@@ -40,6 +43,9 @@ chown -R "${HOST_NAME}:www-data" ./"${HOST_NAME}"
 chmod -R u=rwX,go=rX    ./"${HOST_NAME}"
 chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/sessions
 chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/temp
+
+chown root:www-data /var/backups
+chmod ug=rwX,o=rX   /var/backups
 
 mkdir -p /var/backups/"${HOST_NAME}"
 chown -R "${HOST_NAME}:www-data" /var/backups/"${HOST_NAME}"
