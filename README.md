@@ -77,7 +77,7 @@ In the VM you can use helpers for virtual hosts and databases management:
 
     ```bash
     create-mysql-db example_db example.local password_for_example root_password
-    mysql -u example.local -ppassword_for_example -d example_db
+    mysql -u example.local -ppassword_for_example -D example_db
     ```
 
 5. Helper `mysql-backup` zip and backup MySQL DB to `/var/backups/example.local` directory:
