@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# debug|production
 MODE="debug"
 
 INIT_SERVER=true
