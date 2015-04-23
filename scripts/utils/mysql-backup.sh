@@ -10,3 +10,5 @@ cd /var/backups/"${DB_USER}"
 
 COMMAND="mysqldump -u ${DB_USER} -p${DB_PASSWORD} -f ${DB_NAME} | gzip > ./${DB_NAME}_${CURRENT_DATE}.sql.gz"
 eval "${COMMAND}"
+
+# mysql ${DB_NAME} -u${DB_USER} -p${DB_PASSWORD} < ./path/to/dump.sql
