@@ -32,7 +32,17 @@ set_editor() {
     update-alternatives --get-selections
 }
 
+set_sshd() {
+    DEBIAN_FRONTEND=noninteractive aptitude -y install openssh-server > /dev/null
+
+    mv -fv /etc/sshd/sshd_config /etc/sshd/sshd_config.origin
+    cp -fv "${SCRIPT_DIR}/configs/sshd/sshd_config" /etc/ssh/sshd_config
+
+    service ssh restart
+}
+
 set_packages
 set_locales
 set_timezone
 set_editor
+set_sshd
