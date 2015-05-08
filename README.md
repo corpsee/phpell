@@ -49,8 +49,7 @@ cd /path/to/your/phpell
 vagrant ssh
 ```
 
-Helpers
--------
+###Helpers
 
 In the VM you can use helpers for virtual hosts and databases management:
 
