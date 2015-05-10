@@ -27,3 +27,7 @@ mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
 sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" "${SCRIPT_DIR}/configs/php5/php.${MODE}.ini" > /etc/php5/cli/php.ini
 
 [ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
+
+mkdir -p                /var/log/php5
+chown www-data:www-data /var/log/php5
+chmod 775               /var/log/php5
