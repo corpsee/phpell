@@ -35,8 +35,8 @@ set_editor() {
 set_sshd() {
     DEBIAN_FRONTEND=noninteractive aptitude -y install openssh-server > /dev/null
 
-    mv -fv /etc/sshd/sshd_config /etc/sshd/sshd_config.origin
-    cp -fv "${SCRIPT_DIR}/configs/sshd/sshd_config" /etc/ssh/sshd_config
+    mv -fv /etc/ssh/sshd_config /etc/sshd/sshd_config.origin
+    cp -fv "${SCRIPT_DIR}/configs/ssh/sshd_config" /etc/ssh/sshd_config
 
     service ssh restart
 }
