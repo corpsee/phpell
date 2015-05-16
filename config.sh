@@ -11,7 +11,7 @@ LOCALE='ru_RU'
 EDITOR="/usr/bin/mcedit"
 VIEW="/usr/bin/mcview"
 
-PACKAGES="sendmail mc curl htop git tar bzip2 unrar gzip unzip p7zip"
+PACKAGES="mc curl htop git"
 
 INSTALL_JAVA=false
 JAVA_VERSION="8" #6|7|8

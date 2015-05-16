@@ -26,12 +26,15 @@ fi
 
 if [ "${INSTALL_MARIADB}" = true ]; then
     sudo ./mariadb-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
+    sudo ./utils-db-install.sh "${SCRIPT_DIR}" mysql
 elif [ "${INSTALL_MYSQL}" = true ]; then
     sudo ./mysql-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
+    sudo ./utils-db-install.sh "${SCRIPT_DIR}" mysql
 fi
 
 if [ "${INSTALL_POSTGRES}" = true ]; then
     sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
+    sudo ./utils-db-install.sh "${SCRIPT_DIR}" postgres
 fi
 
 if [ "${INSTALL_MEMCACHED}" = true ]; then

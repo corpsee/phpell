@@ -41,8 +41,15 @@ set_sshd() {
     service ssh restart
 }
 
+set_sendmail() {
+    DEBIAN_FRONTEND=noninteractive aptitude -y install sendmail > /dev/null
+    #(echo "Subject:Test"; echo "Test mail";) | sendmail -f mail@example.com example@gmail.com
+    #php -r "mail('example@gmail.com', 'Test', 'Test mail', 'From: mail@example.com');"
+}
+
 set_packages
 set_locales
 set_timezone
 set_editor
 set_sshd
+set_sendmail
