@@ -56,46 +56,46 @@ In the VM you can use helpers for virtual hosts and databases management:
 1. Helper `create-host` create new host and new user (has name as new host) and `create-web-user` create only new user:
     
     ```bash
-    sudo create-host example.local password_for_example
-    sudo create-web-user example.local password_for_example
+    sudo create-host --host=example.local --password=password_for_example
+    sudo create-web-user --user=example.local --password=password_for_example
     ```
 
 2. Helper `enable-host` enable host:
 
     ```bash
-    sudo enable-host example.local
+    sudo enable-host --host=example.local
     ```
 
 3. Helper `disable-host` disable host:
 
     ```bash
-    sudo disable-host example.local
+    sudo disable-host --host=example.local
     ```
 
 4. Helper `create-mysql-db` create new empty MySQL DB with granted user:
 
     ```bash
-    create-mysql-db example_db example.local password_for_example root_password
+    create-mysql-db --database=example_db --user=example.local --password=password_for_example --root=root_password
     mysql -u example.local -ppassword_for_example -D example_db
     ```
 
-5. Helper `mysql-backup` zip and backup MySQL DB to `/var/backups/example.local` directory:
+5. Helper `backup-mysql-db` zip and backup MySQL DB to `/var/backups/example.local` directory:
 
     ```bash
-    mysql-backup example_db example.local password_for_example
+    backup-mysql-db --database=example_db --user=example.local --password=password_for_example
     ```
 
 6. Helper `create-postgres-db` create new empty Postgres DB with granted user:
 
     ```bash
-    sudo create-postgres-db example_db example.local password_for_example
+    sudo create-postgres-db --database=example_db --user=example.local --password=password_for_example
     sudo -u example.local psql -U example.local -d example_db
     ```
 
-7. Helper `postgres-backup` zip and backup Postgres DB to `/var/backups/example.local` directory:
+7. Helper `backup-postgres-db` zip and backup PostgreSQL DB to `/var/backups/example.local` directory:
 
     ```bash
-    postgres-backup example_db example.local
+    sudo -u example.local backup-postgres-db --database=example_db --user=example.local
     ```
 
 License
