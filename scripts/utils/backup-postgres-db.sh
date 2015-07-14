@@ -1,15 +1,12 @@
 #!/bin/bash
 
-#!/bin/bash
-
 source /usr/bin/functions
 
 _help() {
-    echo "How to use create-postgres-db:"
+    echo "How to use backup-postgres-db:"
     echo "Available params:"
     echo "-d|--database - Database name"
     echo "-u|--user     - User/Database owner"
-    echo "-p|--password - User/Database owner password"
     echo
     exit 0
 }
@@ -27,10 +24,6 @@ while [ 1 ]; do
         pUser="${cRes}"; shift
     elif processLongParam "--user" "$1"; then
         pUser="${cRes}"
-    elif processShortParam "-p" "$1" "$2"; then
-        pPassword="${cRes}"; shift
-    elif processLongParam "--password" "$1"; then
-        pPassword="${cRes}"
     elif [ -z "$1" ]; then
         break
     else
@@ -42,14 +35,16 @@ done
 
 checkParam "${pDatabase}" '$pDatabase'
 checkParam "${pUser}"     '$pUser'
-checkParam "${pPassword}" '$pPassword'
 
 if [ "${pYes}" != "1" ]; then
-    confirmation "Create PostgreSQL database '${pDatabase}' with owner ${pUser}/${pPassword}?" || exit 1
+    confirmation "Backup PostgreSQL database '${pDatabase}'?" || exit 1
 fi
 
-sudo -u postgres psql -c "CREATE USER \"${pUser}\" WITH PASSWORD '${pPassword}';"
-sudo -u postgres psql -c "CREATE DATABASE \"${pDatabase}\";"
-sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE \"${pDatabase}\" TO \"${pUser}\";"
+CURRENT_DATE=`date +%Y-%m-%d`
 
-# sudo -u ${pDatabase} psql -d ${pUser}
+cd /var/backups/"${pUser}"
+
+COMMAND="pg_dump -O --column-inserts -F p -U ${pUser} -d ${pDatabase} | gzip > ./${pDatabase}_${CURRENT_DATE}.sql.gz"
+eval "${COMMAND}"
+
+#psql -U ${pUser} -d ${pDatabase} < ./path/to/dump.sql
