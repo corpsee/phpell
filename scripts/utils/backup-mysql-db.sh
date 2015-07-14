@@ -3,12 +3,11 @@
 source /usr/bin/functions
 
 _help() {
-    echo "How to use create-mysql-db:"
+    echo "How to use backup-mysql-db:"
     echo "Available params:"
     echo "-d|--database - Database name"
     echo "-u|--user     - User/Database owner"
     echo "-p|--password - User/Database owner password"
-    echo "-r|--root     - MySQL root password"
     echo
     exit 0
 }
@@ -30,10 +29,6 @@ while [ 1 ]; do
         pPassword="${cRes}"; shift
     elif processLongParam "--password" "$1"; then
         pPassword="${cRes}"
-    elif processShortParam "-r" "$1" "$2"; then
-        pRoot="${cRes}"; shift
-    elif processLongParam "--root" "$1"; then
-        pRoot="${cRes}"
     elif [ -z "$1" ]; then
         break
     else
@@ -46,14 +41,16 @@ done
 checkParam "${pDatabase}" '$pDatabase'
 checkParam "${pUser}"     '$pUser'
 checkParam "${pPassword}" '$pPassword'
-checkParam "${pRoot}"     '$pRoot'
 
 if [ "${pYes}" != "1" ]; then
-    confirmation "Create MySQL database '${pDatabase}' with owner ${pUser}/${pPassword}?" || exit 1
+    confirmation "Backup MySQL database '${pDatabase}'?" || exit 1
 fi
 
-mysql -u root -p"${pRoot}" -e "CREATE DATABASE ${pDatabase};"
-mysql -u root -p"${pRoot}" -e "GRANT ALL ON ${pDatabase}.* TO '${pUser}'@localhost IDENTIFIED BY '${pPassword}';"
-mysql -u root -p"${pRoot}" -e "FLUSH PRIVILEGES;"
+CURRENT_DATE=`date +%Y-%m-%d`
 
-# mysql -u ${pUser} -p${pPassword} -D ${pDatabase}
+cd /var/backups/"${pUser}"
+
+COMMAND="mysqldump -u ${pUser} -p${pPassword} -f ${pDatabase} | gzip > ./${pDatabase}_${CURRENT_DATE}.sql.gz"
+eval "${COMMAND}"
+
+# mysql ${pDatabase} -u${pUser} -p${pPassword} < ./path/to/dump.sql

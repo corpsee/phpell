@@ -1,5 +1,7 @@
 #!/bin/bash
 
+test $# -eq 1 || exit
+
 if [ -f $1 ] ; then
     case $1 in
         *.tar.bz2)

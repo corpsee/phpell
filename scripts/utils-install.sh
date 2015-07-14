@@ -3,6 +3,9 @@
 SCRIPT_DIR=$1
 SERVER_TYPE=$2
 
+cp -v "${SCRIPT_DIR}/scripts/utils/functions.sh" /usr/bin/functions
+chmod 644 /usr/bin/functions
+
 DEBIAN_FRONTEND=noninteractive aptitude -y install tar bzip2 unrar gzip unzip p7zip > /dev/null
 
 cp -v "${SCRIPT_DIR}/scripts/utils/extract.sh" /usr/bin/extract

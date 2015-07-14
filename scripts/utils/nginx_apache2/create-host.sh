@@ -1,38 +1,75 @@
 #!/bin/bash
 
-HOST_NAME=$1
-PASSWORD=$2
+source /usr/bin/functions
 
-create-web-user "${HOST_NAME}" "${PASSWORD}"
+_help() {
+    echo "How to use create-host:"
+    echo "Available params:"
+    echo "-h|--host     - Host/owner name"
+    echo "-p|--password - Owner password"
+    echo
+    exit 0
+}
+
+test $# -gt 0 || _help
+
+while [ 1 ]; do
+    if [ "$1" = "-y" ] ; then
+        pYes=1
+    elif processShortParam "-h" "$1" "$2"; then
+        pHost="${cRes}"; shift
+    elif processLongParam "--host" "$1"; then
+        pHost="${cRes}"
+    elif processShortParam "-p" "$1" "$2"; then
+        pPassword="${cRes}"; shift
+    elif processLongParam "--password" "$1"; then
+        pPassword="${cRes}"
+    elif [ -z "$1" ]; then
+        break
+    else
+        _help
+    fi
+
+    shift
+done
+
+checkParam "${pHost}"     '$pHost'
+checkParam "${pPassword}" '$pPassword'
+
+if [ "${pYes}" != "1" ]; then
+    confirmation "Create host '${pHost}' with owner ${pHost}/${pPassword}?" || exit 1
+fi
+
+create-web-user --user="${pHost}" --password="${pPassword}"
 
 VHOST_APACHE2="<VirtualHost 127.0.0.1:8080>
-    ServerAdmin  admin@${HOST_NAME}
-    ServerName   ${HOST_NAME}
-    ServerAlias  www.${HOST_NAME}
-    DocumentRoot /var/www/${HOST_NAME}/www
+    ServerAdmin  admin@${pHost}
+    ServerName   ${pHost}
+    ServerAlias  www.${pHost}
+    DocumentRoot /var/www/${pHost}/www
 
-    <Directory /var/www/${HOST_NAME}/www>
+    <Directory /var/www/${pHost}/www>
         AllowOverride All
         Require all granted
     </Directory>
 
-    ErrorLog  /var/www/${HOST_NAME}/logs/apache_errors.log
-    CustomLog /var/www/${HOST_NAME}/logs/apache_access.log combined
+    ErrorLog  /var/www/${pHost}/logs/apache_errors.log
+    CustomLog /var/www/${pHost}/logs/apache_access.log combined
 
-    php_admin_value open_basedir      /var/www/${HOST_NAME}:/tmp
-    php_admin_value session.save_path /var/www/${HOST_NAME}/sessions
-    php_admin_value error_log         /var/www/${HOST_NAME}/logs/php_errors.log
-    php_admin_value upload_tmp_dir    /var/www/${HOST_NAME}/temp
+    php_admin_value open_basedir      /var/www/${pHost}:/tmp
+    php_admin_value session.save_path /var/www/${pHost}/sessions
+    php_admin_value error_log         /var/www/${pHost}/logs/php_errors.log
+    php_admin_value upload_tmp_dir    /var/www/${pHost}/temp
 </VirtualHost>"
 
 VHOST_NGINX="server {
     listen *:80;
 
-    server_name ${HOST_NAME} www.${HOST_NAME};
-    root /var/www/${HOST_NAME}/www;
+    server_name ${pHost} www.${pHost};
+    root /var/www/${pHost}/www;
 
-    #access_log /var/www/${HOST_NAME}/logs/nginx_access.log;
-    error_log  /var/www/${HOST_NAME}/logs/nginx_errors.log warn;
+    #access_log /var/www/${pHost}/logs/nginx_access.log;
+    error_log  /var/www/${pHost}/logs/nginx_errors.log warn;
 
     location ~* \.(htm|html|xhtml|jpg|jpeg|gif|png|css|zip|tar|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|wav|bmp|rtf|swf|ico|flv|txt|docx|xlsx)$ {
         error_page 404 405 502 504 500 = @apache;
@@ -59,34 +96,34 @@ VHOST_NGINX="server {
 }"
 
 cd /etc
-echo "$VHOST_APACHE2" > ./apache2/sites-available/"${HOST_NAME}".conf
-echo "$VHOST_NGINX"   > ./nginx/sites-available/"${HOST_NAME}".conf
+echo "$VHOST_APACHE2" > ./apache2/sites-available/"${pHost}".conf
+echo "$VHOST_NGINX"   > ./nginx/sites-available/"${pHost}".conf
 
 cd /var/www
 chown root:www-data /var/www
 chmod ug=rwX,o=rX   /var/www
 
-mkdir -p ./"${HOST_NAME}"/www
-mkdir -p ./"${HOST_NAME}"/sessions
-mkdir -p ./"${HOST_NAME}"/temp
+mkdir -p ./"${pHost}"/www
+mkdir -p ./"${pHost}"/sessions
+mkdir -p ./"${pHost}"/temp
 
-echo "<?php phpinfo(); " > ./"${HOST_NAME}"/www/index.php
+echo "<?php phpinfo(); " > ./"${pHost}"/www/index.php
 
-chown -R "${HOST_NAME}:www-data" ./"${HOST_NAME}"
+chown -R "${pHost}:www-data" ./"${pHost}"
 
-chmod -R u=rwX,go=rX    ./"${HOST_NAME}"
-chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/sessions
-chmod -R ug=rwX,o=rX    ./"${HOST_NAME}"/temp
+chmod -R u=rwX,go=rX    ./"${pHost}"
+chmod -R ug=rwX,o=rX    ./"${pHost}"/sessions
+chmod -R ug=rwX,o=rX    ./"${pHost}"/temp
 
 chown root:www-data /var/backups
 chmod ug=rwX,o=rX   /var/backups
 
-mkdir -p /var/backups/"${HOST_NAME}"
-chown -R "${HOST_NAME}:www-data" /var/backups/"${HOST_NAME}"
-chmod -R u=rwX,go=rX             /var/backups/"${HOST_NAME}"
+mkdir -p /var/backups/"${pHost}"
+chown -R "${pHost}:www-data" /var/backups/"${pHost}"
+chmod -R u=rwX,go=rX             /var/backups/"${pHost}"
 
-mkdir -p /var/log/"${HOST_NAME}"
-chown -R "${HOST_NAME}:www-data" /var/log/"${HOST_NAME}"
-chmod -R u=rwX,go=rX             /var/log/"${HOST_NAME}"
+mkdir -p /var/log/"${pHost}"
+chown -R "${pHost}:www-data" /var/log/"${pHost}"
+chmod -R u=rwX,go=rX             /var/log/"${pHost}"
 
-ln -sv /var/log/"${HOST_NAME}" /var/www/"${HOST_NAME}"/logs
+ln -sv /var/log/"${pHost}" /var/www/"${pHost}"/logs
