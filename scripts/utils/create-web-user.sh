@@ -11,6 +11,11 @@ _help() {
     exit 0
 }
 
+if ! [ $(id -u -n) = "root" ]; then
+   echo "Please, run script with sudo!"
+   exit 1
+fi
+
 test $# -gt 0 || _help
 
 while [ 1 ]; do

@@ -40,6 +40,11 @@ while [ 1 ]; do
     shift
 done
 
+if ! [ $(id -u -n) = "${pUser}" ]; then
+   echo "Please, run script from ${pUser}!"
+   exit 1
+fi
+
 checkParam "${pDatabase}" '$pDatabase'
 checkParam "${pUser}"     '$pUser'
 checkParam "${pPassword}" '$pPassword'

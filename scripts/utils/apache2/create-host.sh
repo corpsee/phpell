@@ -13,8 +13,13 @@ _help() {
 
 test $# -gt 0 || _help
 
+if ! [ $(id -u -n) = "root" ]; then
+   echo "Please, run script with sudo!"
+   exit 1
+fi
+
 while [ 1 ]; do
-    if [ "$1" = "-y" ] ; then
+    if [ "$1" = "-y" ]; then
         pYes=1
     elif processShortParam "-h" "$1" "$2"; then
         pHost="${cRes}"; shift
@@ -40,7 +45,7 @@ if [ "${pYes}" != "1" ]; then
     confirmation "Create host '${pHost}' with owner ${pHost}/${pPassword}?" || exit 1
 fi
 
-create-web-user --user="${pHost}" --password="${pPassword}"
+create-web-user --user="${pHost}" --password="${pPassword}" -y
 
 VHOST_APACHE2="<VirtualHost *:80>
     ServerAdmin  admin@${pHost}
