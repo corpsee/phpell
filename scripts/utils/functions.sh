@@ -22,6 +22,16 @@ checkParam() {
     fi
 }
 
+# -param
+processParamSimple() {
+    if [ "$1" = "$2" ]; then
+        return 0
+    fi
+
+    return 1
+}
+
+# -param value
 processShortParam() {
     [ -z "$2" ] && return 1
 
@@ -34,6 +44,7 @@ processShortParam() {
     return 1
 }
 
+# --param=value
 processLongParam() {
     [ -z "$1" ] && return 1
 
