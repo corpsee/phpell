@@ -19,4 +19,6 @@ cp -fv "${SCRIPT_DIR}/configs/nginx/nginx.${MODE}.conf" /etc/nginx/nginx.conf
 [ ! -d /etc/nginx/sites-enabled ] && mkdir -p /etc/nginx/sites-enabled
 rm -fv /etc/nginx/sites-enabled/*
 
+[ ! -d /var/www/html ] && rm -fvr /var/www/html
+
 service nginx restart
