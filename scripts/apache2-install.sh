@@ -33,6 +33,6 @@ COMMAND="a2enmod ${APACHE_MODS}"
 eval "${COMMAND}"
 
 rm -fv  /etc/apache2/sites-enabled/*
-rm -frv /var/www/*
+[ ! -d /var/www/html ] && rm -fvr /var/www/html
 
 service apache2 restart
