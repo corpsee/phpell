@@ -22,3 +22,6 @@ chmod 755 /usr/bin/enable-host
 
 cp -v "${SCRIPT_DIR}/scripts/utils/create-web-user.sh" /usr/bin/create-web-user
 chmod 755 /usr/bin/create-web-user
+
+cp -v "${SCRIPT_DIR}/scripts/utils/delete-host.sh" /usr/bin/delete-host
+chmod 755 /usr/bin/delete-host
