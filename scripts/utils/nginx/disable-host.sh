@@ -42,4 +42,4 @@ fi
 rm -f /etc/nginx/sites-enabled/"${pHost}".conf
 
 service php5-fpm restart
-service nginx    reload
+service nginx    restart

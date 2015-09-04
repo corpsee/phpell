@@ -47,5 +47,5 @@ if [ ! -f /etc/apache2/sites-enabled/"${pHost}".conf ]; then
     ln -sf /etc/apache2/sites-available/"${pHost}".conf /etc/apache2/sites-enabled/"${pHost}".conf
 fi
 
-service apache2 reload
-service nginx   reload
+service apache2 restart
+service nginx   restart
