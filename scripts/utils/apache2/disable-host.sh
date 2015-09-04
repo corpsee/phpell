@@ -41,4 +41,4 @@ fi
 
 rm -f /etc/apache2/sites-enabled/"${pHost}".conf
 
-service apache2 reload
+service apache2 restart

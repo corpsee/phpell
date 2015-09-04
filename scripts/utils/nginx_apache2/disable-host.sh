@@ -42,5 +42,5 @@ fi
 rm -f /etc/nginx/sites-enabled/"${pHost}".conf
 rm -f /etc/apache2/sites-enabled/"${pHost}".conf
 
-service apache2 reload
-service nginx   reload
+service apache2 restart
+service nginx   restart
