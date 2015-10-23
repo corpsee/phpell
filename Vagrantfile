@@ -2,8 +2,8 @@ VAGRANTFILE_API_VERSION = "2"
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-    config.vm.box      = "larryli/vivid64"
-    #config.vm.hostname = "phpell-ubuntu-1504"
+    config.vm.box      = "larryli/wily64"
+    #config.vm.hostname = "phpell-ubuntu-1510"
 
     config.vm.provision :shell, inline: "hostnamectl set-hostname phpell-ubuntu-1504"
 
