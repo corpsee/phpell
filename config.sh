@@ -20,7 +20,7 @@ PHP_VERSION="5.6" #5.6|5.5|5.4
 PHP_EXTENSIONS="php5-json php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite"
 
 INSTALL_NGINX=true
-NGINX_VERSION="1.7" #1.6|1.7
+NGINX_VERSION="development" #stable|development (1.8|1.9)
 
 INSTALL_APACHE2=false
 APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif"
