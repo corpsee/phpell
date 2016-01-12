@@ -4,7 +4,7 @@ SCRIPT_DIR=$1
 MODE=$2
 NGINX_VERSION=$3
 
-if [ "${NGINX_VERSION}" == "1.6" ]; then
+if [ "${NGINX_VERSION}" == "stable" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/stable
 else
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/development
