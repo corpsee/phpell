@@ -14,8 +14,8 @@ PHPell includes:
     * Apache2 + php_mod,
     * Nginx + Apache2 + php_mod,
     * Nginx + PHP-FPM;
-* Nginx 1.7 (1.6);
-* MySQL 5.6 (5.6);
+* Nginx stable (1.8) (development, 1.9);
+* MySQL 5.6 (5.5);
 * MariaDB 10.0 (5.5);
 * PostgreSQL 9.4 (9.3);
 * Memcached 1.4 (+ Memcache/Memcached PHP extensions);
@@ -25,7 +25,10 @@ TODO
 
 * Add Redis;
 * Add MongoDB;
-* Add HHVM
+* Add HHVM;
+* Add MySQL 5.7;
+* Add PHP 7.0;
+* Add PostgreSQL 9.5
 
 Installation
 ------------
