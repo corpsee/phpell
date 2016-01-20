@@ -3,7 +3,9 @@
 SCRIPT_DIR=$1
 POSTGRESQL_VERSION=$2
 
-cp -fv "${SCRIPT_DIR}/configs/apt/postgres.list" /etc/apt/sources.list.d/postgres.list
+UBUNTU=$(lsb_release -c | awk '{ print $2 }')
+
+cp -fv "${SCRIPT_DIR}/configs/apt/postgres.${UBUNTU}.list" /etc/apt/sources.list.d/postgres.list
 wget -qO - https://www.postgresql.org/media/keys/ACCC4CF8.asc | apt-key add -
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
