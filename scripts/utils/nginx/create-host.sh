@@ -57,7 +57,7 @@ VHOST_NGINX="server {
     error_log  /var/www/${pHost}/logs/nginx_errors.log warn;
 
     location ~* \.(htm|html|xhtml|jpg|jpeg|gif|png|css|zip|tar|tgz|gz|rar|bz2|doc|xls|exe|pdf|ppt|wav|bmp|rtf|swf|ico|flv|txt|docx|xlsx)$ {
-        error_page 404 405 502 504 500 = @apache;
+        error_page 404 405 502 504 500 = @fpm;
         expires    30d;
     }
 

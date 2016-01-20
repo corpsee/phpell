@@ -7,7 +7,7 @@ It was inspired by [PuPHPet](http://puphpet.com) and [Phansible](http://phansibl
 
 PHPell includes:
 
-* Vagrant VM with Ubuntu 15.10 (15.04, ) and bash(shell) provision.
+* Vagrant VM with Ubuntu 15.10 (15.04, 14.10, 14.04) and bash(shell) provision.
 * Oracle Java 8 (6, 7);
 * Apache 2.4;
 * PHP 5.6 (5.5, 5.4)
