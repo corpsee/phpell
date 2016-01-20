@@ -15,7 +15,7 @@ else
 fi
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
-DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli > /dev/null
+DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli php5-json > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev > /dev/null
 
 COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install ${PHP_EXTENSIONS} > /dev/null"

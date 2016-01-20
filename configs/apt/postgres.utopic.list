@@ -1,0 +1,2 @@
+# postgres official
+deb http://apt.postgresql.org/pub/repos/apt/ utopic-pgdg main
