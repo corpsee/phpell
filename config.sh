@@ -17,7 +17,7 @@ INSTALL_JAVA=false
 JAVA_VERSION="8" #6|7|8
 
 PHP_VERSION="5.6" #5.6|5.5|5.4
-PHP_EXTENSIONS="php5-curl php5-gd php5-imagick php5-xdebug php5-geoip php5-mcrypt php5-sqlite"
+PHP_EXTENSIONS="php5-curl php5-gd php5-imagick"
 
 INSTALL_NGINX=true
 NGINX_VERSION="development" #stable|development (1.8|1.9)
