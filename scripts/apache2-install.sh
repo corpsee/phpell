@@ -13,8 +13,8 @@ rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/mods-available/*.conf
 
-cp -fv "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" /etc/apache2/apache2.conf
-cp -fv "${SCRIPT_DIR}/configs/apache2/ports.conf"           /etc/apache2/ports.conf
+sed "s:\${PORT}:80:g" "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" > /etc/apache2/apache2.conf
+sed "s:\${PORT}:80:g;s:\${PORT}:443:g;" "${SCRIPT_DIR}/configs/apache2/ports.conf" > /etc/apache2/ports.conf
 
 cp -fv "${SCRIPT_DIR}/configs/apache2/conf/charset.conf"                 /etc/apache2/conf-available/charset.conf
 cp -fv "${SCRIPT_DIR}/configs/apache2/conf/other-vhosts-access-log.conf" /etc/apache2/conf-available/other-vhosts-access-log.conf

@@ -19,3 +19,4 @@ if [ "${MEMCACHED_MEMCACHED}" = true ]; then
 fi
 
 service apache2 restart
+service php5-fpm restart

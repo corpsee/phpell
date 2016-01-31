@@ -47,7 +47,7 @@ fi
 
 create-web-user --user="${pHost}" --password="${pPassword}" -y
 
-VHOST_APACHE2="<VirtualHost 127.0.0.1:8080>
+VHOST_APACHE2="<VirtualHost localhost:8080>
     ServerAdmin  admin@${pHost}
     ServerName   ${pHost}
     ServerAlias  www.${pHost}
@@ -87,7 +87,7 @@ VHOST_NGINX="server {
     }
 
     location @apache {
-        proxy_pass http://127.0.0.1:8080;
+        proxy_pass http://localhost:8080;
 
         proxy_set_header X-Real-IP       \$remote_addr;
         proxy_set_header X-Forwarded-for \$remote_addr;
