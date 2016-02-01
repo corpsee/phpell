@@ -2,7 +2,6 @@
 
 SCRIPT_DIR=$1
 MODE=$2
-APACHE_MODS=$3
 
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/apache2
 
@@ -13,8 +12,15 @@ rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/mods-available/*.conf
 
-sed "s:\${PORT}:80:g" "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" > /etc/apache2/apache2.conf
-sed "s:\${PORT}:80:g;s:\${PORT}:443:g;" "${SCRIPT_DIR}/configs/apache2/ports.conf" > /etc/apache2/ports.conf
+sed "
+    s:\${PORT}:80:g;
+    s:\${HOST}:*:g
+" "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" > /etc/apache2/apache2.conf
+sed "
+    s:\${PORT}:80:g;
+    s:\${PORT}:443:g;
+    s:\${HOST}:*:g
+" "${SCRIPT_DIR}/configs/apache2/ports.conf"           > /etc/apache2/ports.conf
 
 cp -fv "${SCRIPT_DIR}/configs/apache2/conf/charset.conf"                 /etc/apache2/conf-available/charset.conf
 cp -fv "${SCRIPT_DIR}/configs/apache2/conf/other-vhosts-access-log.conf" /etc/apache2/conf-available/other-vhosts-access-log.conf
@@ -26,10 +32,23 @@ ln -sv /etc/apache2/conf-available/charset.conf                 /etc/apache2/con
 ln -sv /etc/apache2/conf-available/other-vhosts-access-log.conf /etc/apache2/conf-enabled/other-vhosts-access-log.conf
 ln -sv /etc/apache2/conf-available/security.conf                /etc/apache2/conf-enabled/security.conf
 
-cp -fv "${SCRIPT_DIR}/configs/apache2/mods/"*.conf /etc/apache2/mods-available/
 rm -fv /etc/apache2/mods-enabled/*
 
-COMMAND="a2enmod ${APACHE_MODS}"
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/alias.conf"       /etc/apache2/mods-available/alias.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/dir.conf"         /etc/apache2/mods-available/dir.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/mime.conf"        /etc/apache2/mods-available/mime.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/mpm_prefork.conf" /etc/apache2/mods-available/mpm_prefork.conf
+cp -fv "${SCRIPT_DIR}/configs/apache2/mods/setenvif.conf"    /etc/apache2/mods-available/setenvif.conf
+
+if [ "${MODE}" = 'debug' ]; then
+    COMMAND="a2enmod mpm_prefork access_compat authn_core authz_core alias dir filter mime rewrite setenvif"
+elif [ "${MODE}" = 'production' ]; then
+    cp -fv "${SCRIPT_DIR}/configs/apache2/mods/deflate.conf"     /etc/apache2/mods-available/deflate.conf
+    cp -fv "${SCRIPT_DIR}/configs/apache2/mods/expires.conf"     /etc/apache2/mods-available/expires.conf
+    cp -fv "${SCRIPT_DIR}/configs/apache2/mods/headers.conf"     /etc/apache2/mods-available/headers.conf
+
+    COMMAND="a2enmod mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif"
+fi
 eval "${COMMAND}"
 
 rm -fv  /etc/apache2/sites-enabled/*

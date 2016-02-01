@@ -17,10 +17,10 @@ fi
 ./composer-install.sh
 
 if [ "${INSTALL_NGINX_APACHE2}" = true ]; then
-    sudo ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
+    sudo ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
     sudo ./utils-install.sh "${SCRIPT_DIR}" nginx_apache2
 elif [ "${INSTALL_APACHE2}" = true ]; then
-    sudo ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
+    sudo ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
     sudo ./utils-install.sh "${SCRIPT_DIR}" apache2
 elif [ "${INSTALL_NGINX}" = true ]; then
     sudo ./nginx-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${NGINX_VERSION}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"

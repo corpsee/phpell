@@ -47,7 +47,7 @@ fi
 
 create-web-user --user="${pHost}" --password="${pPassword}" -y
 
-VHOST_APACHE2="<VirtualHost localhost:80>
+VHOST_APACHE2="<VirtualHost *:80>
     ServerAdmin  admin@${pHost}
     ServerName   ${pHost}
     ServerAlias  www.${pHost}

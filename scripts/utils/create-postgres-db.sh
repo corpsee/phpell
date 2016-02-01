@@ -57,4 +57,4 @@ sudo -u postgres psql -c "CREATE USER \"${pUser}\" WITH PASSWORD '${pPassword}';
 sudo -u postgres psql -c "CREATE DATABASE \"${pDatabase}\";"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE \"${pDatabase}\" TO \"${pUser}\";"
 
-# sudo -u ${pDatabase} psql -d ${pUser}
+# sudo -u ${pUser} psql -d ${pDatabase}

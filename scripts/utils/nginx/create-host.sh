@@ -48,7 +48,7 @@ fi
 create-web-user --user="${pHost}" --password="${pPassword}" -y
 
 VHOST_NGINX="server {
-    listen localhost:80;
+    listen *:80;
 
     server_name ${pHost} www.${pHost};
     root /var/www/${pHost}/www;

@@ -3,7 +3,7 @@
 # debug|production
 MODE="debug"
 
-INIT_SERVER=true
+INIT_SERVER=false
 
 TIMEZONE="Asia/Novosibirsk"
 LOCALE='ru_RU'
@@ -19,11 +19,10 @@ JAVA_VERSION="8" #6|7|8
 PHP_VERSION="5.6" #5.6|5.5|5.4
 PHP_EXTENSIONS="php5-curl php5-gd php5-imagick"
 
-INSTALL_NGINX=true
+INSTALL_NGINX=false
 NGINX_VERSION="development" #stable|development (1.8|1.9)
 
 INSTALL_APACHE2=false
-APACHE_MODS="mpm_prefork access_compat authn_core authz_core alias deflate dir expires filter headers mime rewrite setenvif"
 
 INSTALL_NGINX_APACHE2=false
 
