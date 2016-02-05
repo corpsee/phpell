@@ -1,8 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-DB_TYPE=$2
-
 cp -v "${SCRIPT_DIR}/scripts/utils/backup-${DB_TYPE}-db.sh" "/usr/bin/backup-${DB_TYPE}-db"
 chmod 755 /usr/bin/backup-${DB_TYPE}-db
 

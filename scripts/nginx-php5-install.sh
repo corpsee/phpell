@@ -1,10 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MODE=$2
-NGINX_VERSION=$3
-TIMEZONE=$4
-
 cd "${SCRIPT_DIR}/scripts"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-fpm > /dev/null

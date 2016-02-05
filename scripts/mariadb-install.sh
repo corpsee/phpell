@@ -1,9 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MYSQL_ROOT_PASSWORD=$2
-MARIADB_VERSION=$3
-
 if [ "${MARIADB_VERSION}" == "5.5" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-5.5
 else

@@ -1,9 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MODE=$2
-TIMEZONE=$3
-
 cd "${SCRIPT_DIR}/scripts"
 
 ./apache2-install.sh  "${SCRIPT_DIR}" "${MODE}"

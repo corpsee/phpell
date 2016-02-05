@@ -1,12 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-LOCALE=$2
-TIMEZONE=$3
-PACKAGES=$4
-EDITOR=$5
-VIEW=$6
-
 set_locales() {
     locale-gen "en_US.utf8"
     locale-gen "${LOCALE}.utf8"

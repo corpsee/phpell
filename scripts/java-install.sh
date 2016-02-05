@@ -1,7 +1,5 @@
 #!/bin/bash
 
-JAVA_VERSION=$1
-
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:webupd8team/java
 
 echo oracle-java"${JAVA_VERSION}"-installer shared/accepted-oracle-license-v1-1 select true | /usr/bin/debconf-set-selections

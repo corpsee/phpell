@@ -1,7 +1,12 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-SERVER_TYPE=$2
+if [ "${INSTALL_NGINX_APACHE2}" == true ]; then
+    SERVER_TYPE="nginx_apache2"
+elif [ "${INSTALL_APACHE2}" == true ]; then
+    SERVER_TYPE="apache2"
+elif [ "${INSTALL_NGINX}" == true ]; then
+    SERVER_TYPE="nginx"
+fi
 
 cp -v "${SCRIPT_DIR}/scripts/utils/functions.sh" /usr/bin/functions
 chmod 644 /usr/bin/functions

@@ -1,12 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MODE=$2
-TIMEZONE=$3
-PHP_EXTENSIONS=$4
-PHP_VERSION=$5
-NGINX_VERSION=$6
-
 cd "${SCRIPT_DIR}/scripts"
 
 ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"

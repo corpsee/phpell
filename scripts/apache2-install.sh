@@ -1,8 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MODE=$2
-
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/apache2
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
@@ -40,9 +37,9 @@ cp -fv "${SCRIPT_DIR}/configs/apache2/mods/mime.conf"        /etc/apache2/mods-a
 cp -fv "${SCRIPT_DIR}/configs/apache2/mods/mpm_prefork.conf" /etc/apache2/mods-available/mpm_prefork.conf
 cp -fv "${SCRIPT_DIR}/configs/apache2/mods/setenvif.conf"    /etc/apache2/mods-available/setenvif.conf
 
-if [ "${MODE}" = 'debug' ]; then
+if [ "${MODE}" == 'debug' ]; then
     COMMAND="a2enmod mpm_prefork access_compat authn_core authz_core alias dir filter mime rewrite setenvif"
-elif [ "${MODE}" = 'production' ]; then
+elif [ "${MODE}" == 'production' ]; then
     cp -fv "${SCRIPT_DIR}/configs/apache2/mods/deflate.conf"     /etc/apache2/mods-available/deflate.conf
     cp -fv "${SCRIPT_DIR}/configs/apache2/mods/expires.conf"     /etc/apache2/mods-available/expires.conf
     cp -fv "${SCRIPT_DIR}/configs/apache2/mods/headers.conf"     /etc/apache2/mods-available/headers.conf

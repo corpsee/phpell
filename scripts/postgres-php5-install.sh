@@ -1,8 +1,5 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-POSTGRESQL_VERSION=$2
-
 cd "${SCRIPT_DIR}/scripts"
 
 ./postgres-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"

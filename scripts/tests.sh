@@ -13,38 +13,8 @@ cd "${SCRIPT_DIR}/scripts"
 #    sudo ./java-install.sh "${JAVA_VERSION}"
 #fi
 
-echo 'PHP5 TEST'
-echo '========'
-
-if [[ $(php -v | grep -o -m 1 'deb\.sury\.org') != '' ]]; then
-    echo "    PHP PPA deb.sury.org: ok"
-else
-    echo "    PHP PPA deb.sury.org: fail"
-fi
-
-if [[ $(php -v | grep -o -m 1 "${PHP_VERSION}\.") != '' ]]; then
-    echo "    PHP version (${PHP_VERSION}): ok"
-else
-    echo "    PHP version (${PHP_VERSION}): fail"
-fi
-
-if [[ -e /etc/php5/cli/php.origin.ini ]]; then
-    echo "    PHP config (php.origin.ini): ok"
-else
-    echo "    PHP config (php.origin.ini): fail"
-fi
-
-if [[ -e /etc/php5/cli/php.ini ]]; then
-    echo "    PHP config (php.ini): ok"
-else
-    echo "    PHP config (php.ini): fail"
-fi
-
-if [[ /etc/php5/cli/php.origin.ini -ot /etc/php5/cli/php.ini ]]; then
-    echo "    PHP config (php.origin.ini old than php.ini): ok"
-else
-    echo "    PHP config (php.origin.ini old than php.ini): fail"
-fi
+source ./tests/php5-install.sh
+#./tests/composer-install.sh
 
 #./php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
 #./composer-install.sh

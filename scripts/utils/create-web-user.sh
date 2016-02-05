@@ -19,7 +19,7 @@ fi
 test $# -gt 0 || _help
 
 while [ 1 ]; do
-    if [ "$1" = "-y" ] ; then
+    if [ "$1" == "-y" ] ; then
         pYes=1
     elif processShortParam "-u" "$1" "$2"; then
         pUser="${cRes}"; shift
