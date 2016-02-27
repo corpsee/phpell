@@ -41,12 +41,21 @@ else
     echo "    PHP opcache config (opcache.ini): fail"
 fi
 
-if [[ -L /etc/php5/cli/conf.d/05-opcache.ini ]]; then
-    echo "    PHP opcache cli config (05-opcache.ini): ok"
+if [[ "${MODE}" == 'production' ]]; then
+    if [[ -L /etc/php5/cli/conf.d/05-opcache.ini ]]; then
+        echo "    PHP opcache cli config (05-opcache.ini): ok"
+    else
+        echo "    PHP opcache cli config (05-opcache.ini): fail"
+    fi
+    echo ""
 else
-    echo "    PHP opcache cli config (05-opcache.ini): fail"
+    if [[ -L /etc/php5/cli/conf.d/05-opcache.ini ]]; then
+        echo "    PHP opcache cli config (05-opcache.ini): fail"
+    else
+        echo "    PHP opcache cli config (05-opcache.ini): ok"
+    fi
+    echo ""
 fi
-echo ""
 
 if [[ -e /etc/php5/mods-available/pdo.ini ]]; then
     echo "    PHP pdo config (pdo.ini): ok"

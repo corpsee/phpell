@@ -9,13 +9,11 @@ rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/conf-available/*.conf
 rename -fv 's/\.conf$/\.origin\.conf/' /etc/apache2/mods-available/*.conf
 
+cp -fv "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" /etc/apache2/apache2.conf
+
 sed "
     s:\${PORT}:80:g;
-    s:\${HOST}:*:g
-" "${SCRIPT_DIR}/configs/apache2/apache2.${MODE}.conf" > /etc/apache2/apache2.conf
-sed "
-    s:\${PORT}:80:g;
-    s:\${PORT}:443:g;
+    s:\${SSL_PORT}:443:g;
     s:\${HOST}:*:g
 " "${SCRIPT_DIR}/configs/apache2/ports.conf"           > /etc/apache2/ports.conf
 

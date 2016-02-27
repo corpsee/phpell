@@ -14,6 +14,7 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 li
 
 if [ "${MODE}" == 'debug' ]; then
     DEBIAN_FRONTEND=noninteractive aptitude -y install php5-xdebug > /dev/null
+    DEBIAN_FRONTEND=noninteractive php5dismod opcache
 fi
 
 for EXT in "${PHP_EXTENSIONS[@]}"; do
