@@ -17,14 +17,10 @@ INSTALL_JAVA=false
 JAVA_VERSION="8" #6|7|8
 
 PHP_VERSION="5.6" #5.6|5.5|5.4
-#PHP_EXTENSIONS="php5-curl php5-gd php5-imagick"
 PHP_EXTENSIONS=("curl" "gd" "imagick")
-#PHP_EXTENSIONS[0]="php5-curl"
-#PHP_EXTENSIONS[1]="php5-gd"
-#PHP_EXTENSIONS[2]="php5-imagick"
 
 INSTALL_NGINX=false
-NGINX_VERSION="development" #stable|development (1.8|1.9)
+NGINX_VERSION="stable" #stable|development (1.8|1.9)
 
 INSTALL_APACHE2=false
 
