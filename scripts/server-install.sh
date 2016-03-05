@@ -35,7 +35,7 @@ elif [ "${INSTALL_MYSQL}" == true ]; then
     source utils-db-install.sh
 fi
 
-if [ "${INSTALL_POSTGRES}" == true ]; then
+if [ "${INSTALL_POSTGRESQL}" == true ]; then
     source postgres-php5-install.sh
     source utils-db-install.sh
 fi

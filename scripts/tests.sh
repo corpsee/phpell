@@ -38,7 +38,7 @@ source ./tests/php5-install.sh
 #    sudo ./utils-db-install.sh "${SCRIPT_DIR}" mysql
 #fi
 #
-#if [ "${INSTALL_POSTGRES}" = true ]; then
+#if [ "${INSTALL_POSTGRESQL}" = true ]; then
 #    sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
 #    sudo ./utils-db-install.sh "${SCRIPT_DIR}" postgres
 #fi
