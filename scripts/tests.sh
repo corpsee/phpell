@@ -14,7 +14,7 @@ cd "${SCRIPT_DIR}/scripts"
 #fi
 
 source ./tests/php5-install.sh
-#./tests/composer-install.sh
+source ./tests/composer-install.sh
 
 #./php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
 #./composer-install.sh
