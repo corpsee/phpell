@@ -2,7 +2,7 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-./mysql-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
+source "${SCRIPT_DIR}/scripts/mysql-install.sh"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-mysql > /dev/null
 

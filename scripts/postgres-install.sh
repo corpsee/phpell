@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 UBUNTU=$(lsb_release -c | awk '{ print $2 }')
 
 cp -fv "${SCRIPT_DIR}/configs/apt/postgres.${UBUNTU}.list" /etc/apt/sources.list.d/postgres.list

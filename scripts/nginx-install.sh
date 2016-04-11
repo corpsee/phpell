@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 if [ "${NGINX_VERSION}" == "stable" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:nginx/stable
 else

@@ -9,7 +9,7 @@ else
     echo "    Composer version: fail"
 fi
 
-if [[ $(crontab -l | grep -o -m 1 '0 0 \* \* 0 composer selfupdate') != '' ]]; then
+if [[ $(sudo crontab -l | grep -o -m 1 '0 0 \* \* 0 composer selfupdate') != '' ]]; then
     echo "    Composer crontab: ok"
 else
     echo "    Composer crontab: fail"

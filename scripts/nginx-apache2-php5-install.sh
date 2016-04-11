@@ -2,7 +2,7 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
+source "${SCRIPT_DIR}/scripts/apache2-php5-install.sh"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-rpaf > /dev/null
 

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 if [ "${MARIADB_VERSION}" == "5.5" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-5.5
 else

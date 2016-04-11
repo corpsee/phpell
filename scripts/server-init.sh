@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 set_locales() {
     locale-gen "en_US.utf8"
     locale-gen "${LOCALE}.utf8"

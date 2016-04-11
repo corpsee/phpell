@@ -2,7 +2,7 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-./apache2-install.sh  "${SCRIPT_DIR}" "${MODE}"
+source "${SCRIPT_DIR}/scripts/apache2-install.sh"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install libapache2-mod-php5 > /dev/null
 

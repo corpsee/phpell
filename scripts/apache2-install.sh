@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/apache2
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null

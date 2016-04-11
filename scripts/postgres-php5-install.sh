@@ -2,7 +2,7 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-./postgres-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
+source "${SCRIPT_DIR}/scripts/postgres-install.sh"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql > /dev/null
 

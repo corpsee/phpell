@@ -2,7 +2,7 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-./memcached-install.sh
+source "${SCRIPT_DIR}/scripts/memcached-install.sh"
 
 if [ "${MEMCACHED_MEMCACHE}" == true ]; then
     DEBIAN_FRONTEND=noninteractive aptitude -y install php5-memcache > /dev/null

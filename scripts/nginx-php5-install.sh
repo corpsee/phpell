@@ -13,4 +13,4 @@ cp -fv "${SCRIPT_DIR}/configs/php5/www.conf" /etc/php5/fpm/pool.d/www.conf
 
 service php5-fpm restart
 
-./nginx-install.sh "${SCRIPT_DIR}" "${MODE}" "${NGINX_VERSION}"
+source "${SCRIPT_DIR}/scripts/nginx-install.sh"

@@ -1,5 +1,7 @@
 #!/bin/bash
 
+cd "${SCRIPT_DIR}/scripts"
+
 if [ "${PHP_VERSION}" == "5.4" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-oldstable
 elif [ "${PHP_VERSION}" == "5.5" ]; then
