@@ -22,7 +22,7 @@ PHP_EXTENSIONS=("curl" "gd" "imagick")
 INSTALL_NGINX=false
 NGINX_VERSION="stable" #stable|development (1.8|1.9)
 
-INSTALL_APACHE2=false
+INSTALL_APACHE2=true
 
 INSTALL_NGINX_APACHE2=false
 
