@@ -21,11 +21,11 @@ set_packages() {
     eval "${COMMAND}"
 }
 
-set_editor() {
-    [ -f "${EDITOR}" ] && update-alternatives --set editor "${EDITOR}"
-    [ -f "${VIEW}" ] &&   update-alternatives --set view   "${VIEW}"
-    update-alternatives --get-selections
-}
+#set_editor() {
+#    [ -f "${EDITOR}" ] && update-alternatives --set editor "${EDITOR}"
+#    [ -f "${VIEW}" ] &&   update-alternatives --set view   "${VIEW}"
+#    update-alternatives --get-selections
+#}
 
 #set_sshd() {
 #    DEBIAN_FRONTEND=noninteractive aptitude -y install openssh-server > /dev/null
@@ -45,6 +45,6 @@ set_editor() {
 set_packages
 set_locales
 set_timezone
-set_editor
+#set_editor
 #set_sshd
 #set_sendmail

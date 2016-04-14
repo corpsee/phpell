@@ -3,7 +3,7 @@
 # debug|production
 MODE="debug"
 
-INIT_SERVER=false
+INIT_SERVER=true
 
 TIMEZONE="Asia/Novosibirsk"
 LOCALE='ru_RU'
