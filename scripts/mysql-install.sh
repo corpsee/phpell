@@ -17,6 +17,13 @@ DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server- mysql-client > 
 COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mysql-server-${MYSQL_VERSION} mysql-client-${MYSQL_VERSION} > /dev/null"
 eval "${COMMAND}"
 
+mysql -u root -p"${pRoot}" -e "UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root';"
+mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.user WHERE User = '';"
+mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.user WHERE User = 'root' AND Host != 'localhost';"
+mysql -u root -p"${pRoot}" -e "DROP DATABASE test;"
+mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
+mysql -u root -p"${pRoot}" -e "FLUSH PRIVILEGES;"
+
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv "${SCRIPT_DIR}/configs/mysql/my.cnf" /etc/mysql/my.cnf
 

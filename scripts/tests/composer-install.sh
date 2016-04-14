@@ -36,8 +36,8 @@ else
     echo "    Composer rights (755 root): fail"
 fi
 
-COMPOSER_RIGHTS=$(ls -alF /usr/bin/composer | awk '{ print $1 " " $3 " " $4 }')
-if [[ "${COMPOSER_RIGHTS}" == 'lrwxrwxrwx root root' ]]; then
+COMPOSER_LINK_RIGHTS=$(ls -alF /usr/bin/composer | awk '{ print $1 " " $3 " " $4 }')
+if [[ "${COMPOSER_LINK_RIGHTS}" == 'lrwxrwxrwx root root' ]]; then
     echo "    Composer link rights (777 root): ok"
 else
     echo "    Composer link rights (777 root): fail"
