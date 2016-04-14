@@ -22,6 +22,16 @@ checkParam() {
     fi
 }
 
+setDefault() {
+    if [ -z "$1" ]; then
+        cRes="$2"
+    else
+        cRes="$1"
+    fi
+
+    return 0
+}
+
 # -param
 processParamSimple() {
     if [ "$1" == "$2" ]; then
