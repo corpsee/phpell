@@ -29,17 +29,18 @@ fi
 
 if [ "${INSTALL_MARIADB}" == true ]; then
     source "${SCRIPT_DIR}/scripts/mariadb-php5-install.sh"
-    source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
 elif [ "${INSTALL_MYSQL}" == true ]; then
     source "${SCRIPT_DIR}/scripts/mysql-php5-install.sh"
-    source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
 fi
 
 if [ "${INSTALL_POSTGRESQL}" == true ]; then
     source "${SCRIPT_DIR}/scripts/postgres-php5-install.sh"
-    source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
 fi
+
+source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
 
 if [ "${INSTALL_MEMCACHED}" == true ]; then
     source "${SCRIPT_DIR}/scripts/memcached-php5-install.sh"
 fi
+
+source "${SCRIPT_DIR}/scripts/phpci-install.sh"
