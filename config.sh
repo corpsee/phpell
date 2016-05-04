@@ -11,7 +11,8 @@ LOCALE='ru_RU'
 EDITOR="/usr/bin/mcedit"
 VIEW="/usr/bin/mcview"
 
-PACKAGES="mc curl htop git"
+# software-properties-common - for PPA support
+PACKAGES="mc curl htop git software-properties-common"
 
 INSTALL_JAVA=false
 JAVA_VERSION="8" #6|7|8
@@ -27,7 +28,7 @@ INSTALL_APACHE2=true
 INSTALL_NGINX_APACHE2=false
 
 INSTALL_MARIADB=true
-MARIADB_VERSION="10.0" #10.0|5.5
+MARIADB_VERSION="10.1" #10.1|10.0|5.5
 
 INSTALL_MYSQL=false
 MYSQL_VERSION="5.6" #5.5|5.6

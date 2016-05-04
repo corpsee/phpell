@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 source /usr/bin/functions
 
 _help() {

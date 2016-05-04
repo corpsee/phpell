@@ -2,15 +2,10 @@
 
 cd "${SCRIPT_DIR}/scripts"
 
-if [ "${MARIADB_VERSION}" == "5.5" ]; then
-    # mariadb-server-5.5 depends of mysql-common-5.5
-    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mysql-5.5
-    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-5.5
-else
-    # mariadb-server-10.0 depends of mysql-common-5.6
-    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mysql-5.6
-    DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/mariadb-10.0
-fi
+UBUNTU=$(lsb_release -c | awk '{ print $2 }')
+
+apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xcbcb082a1bb943db
+DEBIAN_FRONTEND=noninteractive add-apt-repository -y "deb http://mirror.mephi.ru/mariadb/repo/${MARIADB_VERSION}/ubuntu ${UBUNTU} main"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 
@@ -18,15 +13,14 @@ sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password passw
 sudo debconf-set-selections <<< "mariadb-server mysql-server/root_password_again password ${MYSQL_ROOT_PASSWORD}"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server mariadb-client > /dev/null
-COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install mariadb-server-${MARIADB_VERSION} mariadb-client-${MARIADB_VERSION} > /dev/null"
-eval "${COMMAND}"
 
-mysql -u root -p"${pRoot}" -e "UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root';"
-mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.user WHERE User = '';"
-mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.user WHERE User = 'root' AND Host != 'localhost';"
-mysql -u root -p"${pRoot}" -e "DROP DATABASE test;"
-mysql -u root -p"${pRoot}" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
-mysql -u root -p"${pRoot}" -e "FLUSH PRIVILEGES;"
+# mysql_secure_installation
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "UPDATE mysql.user SET Password=PASSWORD('${MYSQL_ROOT_PASSWORD}') WHERE User='root';"
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "DELETE FROM mysql.user WHERE User = '';"
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "DELETE FROM mysql.user WHERE User = 'root' AND Host != 'localhost';"
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "DROP DATABASE test;"
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "DELETE FROM mysql.db WHERE Db='test' OR Db='test\\_%';"
+mysql -u root -p"${MYSQL_ROOT_PASSWORD}" -e "FLUSH PRIVILEGES;"
 
 mv -fv /etc/mysql/my.cnf /etc/mysql/my.origin.cnf
 cp -fv "${SCRIPT_DIR}/configs/mariadb/my.cnf" /etc/mysql/my.cnf
