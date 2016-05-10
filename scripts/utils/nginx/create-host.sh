@@ -69,18 +69,17 @@ VHOST_NGINX="server {
     }
 
     location / {
-        error_page 404 405 502 504 500 = @fpm;
-        error_page 418                 = @fpm; return 418;
         try_files \$uri @fpm;
     }
 
     location @fpm {
         fastcgi_pass  unix:/var/run/php5-fpm.sock;
+
+        include fastcgi_params;
+
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root/index.php;
         fastcgi_param SCRIPT_NAME index.php;
-        
-        include fastcgi_params;
     }
 }"
 
