@@ -111,6 +111,6 @@ chmod -R u=rwX,go=rX         /var/backups/"${pHost}"
 
 mkdir -p /var/log/"${pHost}"
 chown -R "${pHost}:www-data" /var/log/"${pHost}"
-chmod -R u=rwX,go=rX         /var/log/"${pHost}"
+chmod -R ug=rwX,o=rX         /var/log/"${pHost}"
 
 ln -sv /var/log/"${pHost}" /var/www/"${pHost}"/logs

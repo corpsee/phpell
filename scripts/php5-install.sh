@@ -30,4 +30,4 @@ sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" "${SCRIPT_DIR}/configs/php5/php.${MODE}.in
 
 mkdir -p                /var/log/php5
 chown www-data:www-data /var/log/php5
-chmod 775               /var/log/php5
+chmod 644               /var/log/php5
