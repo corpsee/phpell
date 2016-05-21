@@ -1,13 +1,12 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-POSTGRESQL_VERSION=$2
-
 cd "${SCRIPT_DIR}/scripts"
 
-./postgres-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
+source "${SCRIPT_DIR}/scripts/postgres-install.sh"
 
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-pgsql > /dev/null
 
 php5enmod pgsql
+
 service apache2 restart
+service php5-fpm restart

@@ -16,7 +16,7 @@ _help() {
 test $# -gt 0 || _help
 
 while [ 1 ]; do
-    if [ "$1" = "-y" ] ; then
+    if [ "$1" == "-y" ] ; then
         pYes=1
     elif processShortParam "-d" "$1" "$2"; then
         pDatabase="${cRes}"; shift
@@ -52,8 +52,8 @@ if [ "${pYes}" != "1" ]; then
     confirmation "Create MySQL database '${pDatabase}' with owner ${pUser}/${pPassword}?" || exit 1
 fi
 
-mysql -u root -p"${pRoot}" -e "CREATE DATABASE ${pDatabase};"
-mysql -u root -p"${pRoot}" -e "GRANT ALL ON ${pDatabase}.* TO '${pUser}'@localhost IDENTIFIED BY '${pPassword}';"
+mysql -u root -p"${pRoot}" -e "CREATE DATABASE \`${pDatabase}\`;"
+mysql -u root -p"${pRoot}" -e "GRANT ALL ON \`${pDatabase}\`.* TO '${pUser}'@localhost IDENTIFIED BY '${pPassword}';"
 mysql -u root -p"${pRoot}" -e "FLUSH PRIVILEGES;"
 
 # mysql -u ${pUser} -p${pPassword} -D ${pDatabase}

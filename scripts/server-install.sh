@@ -5,38 +5,42 @@ source "${SCRIPT_DIR}/config.sh"
 
 cd "${SCRIPT_DIR}/scripts"
 
-if [ "${INIT_SERVER}" = true ]; then
-    sudo ./server-init.sh "${SCRIPT_DIR}" "${LOCALE}" "${TIMEZONE}" "${PACKAGES}" "${EDITOR}" "${VIEW}"
+if [ "${INIT_SERVER}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/server-init.sh"
 fi
 
-if [ "${INSTALL_JAVA}" = true ]; then
-    sudo ./java-install.sh "${JAVA_VERSION}"
+if [ "${INSTALL_JAVA}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/java-install.sh"
 fi
 
-if [ "${INSTALL_NGINX_APACHE2}" = true ]; then
-    sudo ./nginx-apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}" "${NGINX_VERSION}"
-    sudo ./utils-install.sh "${SCRIPT_DIR}" nginx_apache2
-elif [ "${INSTALL_APACHE2}" = true ]; then
-    sudo ./apache2-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${APACHE_MODS}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
-    sudo ./utils-install.sh "${SCRIPT_DIR}" apache2
-elif [ "${INSTALL_NGINX}" = true ]; then
-    sudo ./nginx-php5-install.sh "${SCRIPT_DIR}" "${MODE}" "${NGINX_VERSION}" "${TIMEZONE}" "${PHP_EXTENSIONS}" "${PHP_VERSION}"
-    sudo ./utils-install.sh "${SCRIPT_DIR}" nginx
+source "${SCRIPT_DIR}/scripts/php5-install.sh"
+source "${SCRIPT_DIR}/scripts/composer-install.sh"
+
+if [ "${INSTALL_NGINX_APACHE2}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/nginx-apache2-php5-install.sh"
+    source "${SCRIPT_DIR}/scripts/utils-install.sh"
+elif [ "${INSTALL_APACHE2}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/apache2-php5-install.sh"
+    source "${SCRIPT_DIR}/scripts/utils-install.sh"
+elif [ "${INSTALL_NGINX}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/nginx-php5-install.sh"
+    source "${SCRIPT_DIR}/scripts/utils-install.sh"
 fi
 
-if [ "${INSTALL_MARIADB}" = true ]; then
-    sudo ./mariadb-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MARIADB_VERSION}"
-    sudo ./utils-db-install.sh "${SCRIPT_DIR}" mysql
-elif [ "${INSTALL_MYSQL}" = true ]; then
-    sudo ./mysql-php5-install.sh "${SCRIPT_DIR}" "${MYSQL_ROOT_PASSWORD}" "${MYSQL_VERSION}"
-    sudo ./utils-db-install.sh "${SCRIPT_DIR}" mysql
+if [ "${INSTALL_MARIADB}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/mariadb-php5-install.sh"
+elif [ "${INSTALL_MYSQL}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/mysql-php5-install.sh"
 fi
 
-if [ "${INSTALL_POSTGRES}" = true ]; then
-    sudo ./postgres-php5-install.sh "${SCRIPT_DIR}" "${POSTGRESQL_VERSION}"
-    sudo ./utils-db-install.sh "${SCRIPT_DIR}" postgres
+if [ "${INSTALL_POSTGRESQL}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/postgres-php5-install.sh"
 fi
 
-if [ "${INSTALL_MEMCACHED}" = true ]; then
-    sudo ./memcached-php5-install.sh "${SCRIPT_DIR}" "${MEMCACHED_MEMCACHE}" "${MEMCACHED_MEMCACHED}"
+source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
+
+if [ "${INSTALL_MEMCACHED}" == true ]; then
+    source "${SCRIPT_DIR}/scripts/memcached-php5-install.sh"
 fi
+
+source "${SCRIPT_DIR}/scripts/phpci-install.sh"

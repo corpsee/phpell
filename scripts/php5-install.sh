@@ -1,10 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-MODE=$2
-TIMEZONE=$3
-PHP_EXTENSIONS=$4
-PHP_VERSION=$5
+cd "${SCRIPT_DIR}/scripts"
 
 if [ "${PHP_VERSION}" == "5.4" ]; then
     DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:ondrej/php5-oldstable
@@ -18,16 +14,20 @@ DEBIAN_FRONTEND=noninteractive aptitude -y update > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-common php5-cli php5-json > /dev/null
 DEBIAN_FRONTEND=noninteractive aptitude -y install php5-dev php-pear libpcre3 libpcre3-dev > /dev/null
 
-COMMAND="DEBIAN_FRONTEND=noninteractive aptitude -y install ${PHP_EXTENSIONS} > /dev/null"
-eval "${COMMAND}"
+if [ "${MODE}" == 'debug' ]; then
+    DEBIAN_FRONTEND=noninteractive aptitude -y install php5-xdebug > /dev/null
+    DEBIAN_FRONTEND=noninteractive php5dismod opcache
+fi
+
+for EXT in "${PHP_EXTENSIONS[@]}"; do
+    DEBIAN_FRONTEND=noninteractive aptitude -y install "php5-${EXT}" > /dev/null
+done
 
 #pecl install SPL_Types
 
 mv -fv /etc/php5/cli/php.ini /etc/php5/cli/php.origin.ini
 sed -e "s:\${TIMEZONE}:${TIMEZONE}:g" "${SCRIPT_DIR}/configs/php5/php.${MODE}.ini" > /etc/php5/cli/php.ini
 
-[ -f /etc/php5/mods-available/mcrypt.ini ] && php5enmod mcrypt
-
 mkdir -p                /var/log/php5
 chown www-data:www-data /var/log/php5
-chmod 775               /var/log/php5
+chmod 644               /var/log/php5

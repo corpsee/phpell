@@ -8,7 +8,7 @@ confirmation() {
        read -n 1 CONFIRM
     fi
     echo "" 1>&2
-    if [ "$CONFIRM" = "y" ]; then
+    if [ "$CONFIRM" == "y" ]; then
        return 0
     else
        return 1
@@ -22,9 +22,19 @@ checkParam() {
     fi
 }
 
+setDefault() {
+    if [ -z "$1" ]; then
+        cRes="$2"
+    else
+        cRes="$1"
+    fi
+
+    return 0
+}
+
 # -param
 processParamSimple() {
-    if [ "$1" = "$2" ]; then
+    if [ "$1" == "$2" ]; then
         return 0
     fi
 
@@ -35,7 +45,7 @@ processParamSimple() {
 processShortParam() {
     [ -z "$2" ] && return 1
 
-    if [ "$1" = "$2" ]; then
+    if [ "$1" == "$2" ]; then
         cRes="$3"
 
         return 0

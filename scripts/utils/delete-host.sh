@@ -18,7 +18,7 @@ if ! [ $(id -u -n) = "root" ]; then
 fi
 
 while [ 1 ]; do
-    if [ "$1" = "-y" ]; then
+    if [ "$1" == "-y" ]; then
         pYes=1
     elif processShortParam "-h" "$1" "$2"; then
         pHost="${cRes}"; shift

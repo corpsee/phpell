@@ -1,7 +1,5 @@
 #!/bin/bash
 
-#!/bin/bash
-
 source /usr/bin/functions
 
 _help() {
@@ -22,7 +20,7 @@ fi
 test $# -gt 0 || _help
 
 while [ 1 ]; do
-    if [ "$1" = "-y" ] ; then
+    if [ "$1" == "-y" ] ; then
         pYes=1
     elif processShortParam "-d" "$1" "$2"; then
         pDatabase="${cRes}"; shift
@@ -57,4 +55,4 @@ sudo -u postgres psql -c "CREATE USER \"${pUser}\" WITH PASSWORD '${pPassword}';
 sudo -u postgres psql -c "CREATE DATABASE \"${pDatabase}\";"
 sudo -u postgres psql -c "GRANT ALL PRIVILEGES ON DATABASE \"${pDatabase}\" TO \"${pUser}\";"
 
-# sudo -u ${pDatabase} psql -d ${pUser}
+# sudo -u ${pUser} psql -d ${pDatabase}

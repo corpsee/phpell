@@ -1,11 +1,6 @@
 #!/bin/bash
 
-SCRIPT_DIR=$1
-LOCALE=$2
-TIMEZONE=$3
-PACKAGES=$4
-EDITOR=$5
-VIEW=$6
+cd "${SCRIPT_DIR}/scripts"
 
 set_locales() {
     locale-gen "en_US.utf8"
@@ -26,30 +21,30 @@ set_packages() {
     eval "${COMMAND}"
 }
 
-set_editor() {
-    [ -f "${EDITOR}" ] && update-alternatives --set editor "${EDITOR}"
-    [ -f "${VIEW}" ] &&   update-alternatives --set view   "${VIEW}"
-    update-alternatives --get-selections
-}
+#set_editor() {
+#    [ -f "${EDITOR}" ] && update-alternatives --set editor "${EDITOR}"
+#    [ -f "${VIEW}" ] &&   update-alternatives --set view   "${VIEW}"
+#    update-alternatives --get-selections
+#}
 
-set_sshd() {
-    DEBIAN_FRONTEND=noninteractive aptitude -y install openssh-server > /dev/null
+#set_sshd() {
+#    DEBIAN_FRONTEND=noninteractive aptitude -y install openssh-server > /dev/null
+#
+#    mv -fv /etc/ssh/sshd_config /etc/sshd/sshd_config.origin
+#    cp -fv "${SCRIPT_DIR}/configs/ssh/sshd_config" /etc/ssh/sshd_config
+#
+#    service ssh restart
+#}
 
-    mv -fv /etc/ssh/sshd_config /etc/sshd/sshd_config.origin
-    cp -fv "${SCRIPT_DIR}/configs/ssh/sshd_config" /etc/ssh/sshd_config
-
-    service ssh restart
-}
-
-set_sendmail() {
-    DEBIAN_FRONTEND=noninteractive aptitude -y install sendmail > /dev/null
-    #(echo "Subject:Test"; echo "Test mail";) | sendmail -f mail@example.com example@gmail.com
-    #php -r "mail('example@gmail.com', 'Test', 'Test mail', 'From: mail@example.com');"
-}
+#set_sendmail() {
+#    DEBIAN_FRONTEND=noninteractive aptitude -y install sendmail > /dev/null
+#    #(echo "Subject:Test"; echo "Test mail";) | sendmail -f mail@example.com example@gmail.com
+#    #php -r "mail('example@gmail.com', 'Test', 'Test mail', 'From: mail@example.com');"
+#}
 
 set_packages
 set_locales
 set_timezone
-set_editor
-set_sshd
-set_sendmail
+#set_editor
+#set_sshd
+#set_sendmail

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-JAVA_VERSION=$1
+cd "${SCRIPT_DIR}/scripts"
 
 DEBIAN_FRONTEND=noninteractive add-apt-repository -y ppa:webupd8team/java
 

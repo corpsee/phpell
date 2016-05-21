@@ -9,16 +9,14 @@ PHPell includes:
 
 * Vagrant VM with Ubuntu 15.10 (15.04, 14.04) and bash(shell) provision.
 * Oracle Java 8 (6, 7);
-* Apache 2.4;
-* PHP 5.6 (5.5, 5.4)
-    * Apache2 + php_mod,
-    * Nginx + Apache2 + php_mod,
-    * Nginx + PHP-FPM;
-* Nginx stable (1.8) (development, 1.9);
+* PHP 5.6 (5.5, 5.4) with:
+    * Apache 2.4 + php_mod,
+    * Nginx stable 1.8 (development 1.9) + Apache 2.4 + php_mod,
+    * Nginx stable 1.8 (development 1.9) + PHP-FPM;
 * MySQL 5.6 (5.5);
 * MariaDB 10.0 (5.5);
-* PostgreSQL 9.4 (9.3);
-* Memcached 1.4 (+ Memcache/Memcached PHP extensions);
+* PostgreSQL 9.4 (9.3, 9.5);
+* Memcached (+ Memcache/Memcached PHP extensions);
 
 TODO
 ----
@@ -28,12 +26,11 @@ TODO
 * Add HHVM;
 * Add MySQL 5.7;
 * Add PHP 7.0;
-* Add PostgreSQL 9.5
 
 Installation
 ------------
 
-1. Edit configuration in Vagrantfile and config.sh
+1. Edit configuration in /Vagrantfile and /config.sh
 
 2. Install Vagrant VM from console:
 
@@ -78,7 +75,7 @@ In the VM you can use helpers for virtual hosts and databases management:
 4. Helper `create-mysql-db` create new empty MySQL DB with granted user:
 
     ```bash
-    create-mysql-db --database=example_db --user=example.local --password=password_for_example --root=root_password
+    create-mysql-db --database=example_db --user=example.local --password=password_for_example --root=root_password_for_example
     mysql -u example.local -ppassword_for_example -D example_db
     ```
 

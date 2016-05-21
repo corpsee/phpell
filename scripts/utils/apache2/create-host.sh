@@ -7,6 +7,8 @@ _help() {
     echo "Available params:"
     echo "-h|--host     - Host/owner name"
     echo "-p|--password - Owner password"
+    echo "Optional params:"
+    echo "--public      - Public directory (default value: www)"
     echo
     exit 0
 }
@@ -19,7 +21,7 @@ if ! [ $(id -u -n) = "root" ]; then
 fi
 
 while [ 1 ]; do
-    if [ "$1" = "-y" ]; then
+    if [ "$1" == "-y" ]; then
         pYes=1
     elif processShortParam "-h" "$1" "$2"; then
         pHost="${cRes}"; shift
@@ -29,6 +31,8 @@ while [ 1 ]; do
         pPassword="${cRes}"; shift
     elif processLongParam "--password" "$1"; then
         pPassword="${cRes}"
+    elif processLongParam "--public" "$1"; then
+        pPublic="${cRes}"
     elif [ -z "$1" ]; then
         break
     else
@@ -41,6 +45,9 @@ done
 checkParam "${pHost}"     '$pHost'
 checkParam "${pPassword}" '$pPassword'
 
+setDefault "${pPublic}" "www"
+pPublic="${cRes}"
+
 if [ "${pYes}" != "1" ]; then
     confirmation "Create host '${pHost}' with owner ${pHost}/${pPassword}?" || exit 1
 fi
@@ -51,9 +58,9 @@ VHOST_APACHE2="<VirtualHost *:80>
     ServerAdmin  admin@${pHost}
     ServerName   ${pHost}
     ServerAlias  www.${pHost}
-    DocumentRoot /var/www/${pHost}/www
+    DocumentRoot /var/www/${pHost}/${pPublic}
 
-    <Directory /var/www/${pHost}/www>
+    <Directory /var/www/${pHost}/${pPublic}>
         AllowOverride All
         Require all granted
     </Directory>
@@ -74,11 +81,11 @@ cd /var/www
 chown root:www-data /var/www
 chmod ug=rwX,o=rX   /var/www
 
-mkdir -p ./"${pHost}"/www
+mkdir -p ./"${pHost}"/"${pPublic}"
 mkdir -p ./"${pHost}"/sessions
 mkdir -p ./"${pHost}"/temp
 
-echo "<?php phpinfo(); " > ./"${pHost}"/www/index.php
+echo "<?php phpinfo(); " > ./"${pHost}"/"${pPublic}"/index.php
 
 chown -R "${pHost}:www-data" ./"${pHost}"
 
@@ -91,10 +98,10 @@ chmod ug=rwX,o=rX   /var/backups
 
 mkdir -p /var/backups/"${pHost}"
 chown -R "${pHost}:www-data" /var/backups/"${pHost}"
-chmod -R u=rwX,go=rX             /var/backups/"${pHost}"
+chmod -R u=rwX,go=rX         /var/backups/"${pHost}"
 
 mkdir -p /var/log/"${pHost}"
 chown -R "${pHost}:www-data" /var/log/"${pHost}"
-chmod -R u=rwX,go=rX             /var/log/"${pHost}"
+chmod -R ug=rwX,o=rX         /var/log/"${pHost}"
 
 ln -sv /var/log/"${pHost}" /var/www/"${pHost}"/logs
