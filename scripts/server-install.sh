@@ -42,5 +42,3 @@ source "${SCRIPT_DIR}/scripts/utils-db-install.sh"
 if [ "${INSTALL_MEMCACHED}" == true ]; then
     source "${SCRIPT_DIR}/scripts/memcached-php5-install.sh"
 fi
-
-source "${SCRIPT_DIR}/scripts/phpci-install.sh"
