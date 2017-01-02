@@ -7,6 +7,7 @@ _help() {
     echo "Available params:"
     echo "-h|--host     - Host/owner name"
     echo "-p|--password - Owner password"
+    echo "-v|--version  - PHP version"
     echo "Optional params:"
     echo "--public      - Public directory (default value: www)"
     echo
@@ -31,6 +32,10 @@ while [ 1 ]; do
         pPassword="${cRes}"; shift
     elif processLongParam "--password" "$1"; then
         pPassword="${cRes}"
+    elif processShortParam "-v" "$1" "$2"; then
+        pVersion="${cRes}"; shift
+    elif processLongParam "--version" "$1"; then
+        pVersion="${cRes}"
     elif processLongParam "--public" "$1"; then
         pPublic="${cRes}"
     elif [ -z "$1" ]; then
@@ -44,12 +49,13 @@ done
 
 checkParam "${pHost}"     '$pHost'
 checkParam "${pPassword}" '$pPassword'
+checkParam "${pVersion}"  '$pVersion'
 
 setDefault "${pPublic}" "www"
 pPublic="${cRes}"
 
 if [ "${pYes}" != "1" ]; then
-    confirmation "Create host '${pHost}' with owner ${pHost}/${pPassword}?" || exit 1
+    confirmation "Create host '${pHost}' with owner ${pHost}/${pPassword} (PHP ${pVersion})?" || exit 1
 fi
 
 create-web-user --user="${pHost}" --password="${pPassword}" -y
@@ -73,7 +79,7 @@ VHOST_NGINX="server {
     }
 
     location @fpm {
-        fastcgi_pass  unix:/var/run/php5-fpm.sock;
+        fastcgi_pass  unix:/var/run/php/php${pVersion}-fpm.sock;
 
         include fastcgi_params;
 

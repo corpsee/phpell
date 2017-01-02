@@ -43,5 +43,4 @@ if [ ! -f /etc/nginx/sites-enabled/"${pHost}".conf ]; then
     ln -sf /etc/nginx/sites-available/"${pHost}".conf /etc/nginx/sites-enabled/"${pHost}".conf
 fi
 
-service php5-fpm restart
-service nginx    restart
+service nginx restart

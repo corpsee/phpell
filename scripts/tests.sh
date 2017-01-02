@@ -5,7 +5,7 @@ source "${SCRIPT_DIR}/config.sh"
 
 cd "${SCRIPT_DIR}/scripts"
 
-source "${SCRIPT_DIR}/scripts/tests/php5-install.sh"
+source "${SCRIPT_DIR}/scripts/tests/php-install.sh"
 source "${SCRIPT_DIR}/scripts/tests/composer-install.sh"
 
 if [ "${INSTALL_NGINX_APACHE2}" == true ]; then

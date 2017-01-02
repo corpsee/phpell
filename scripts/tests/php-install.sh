@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo 'PHP5 TEST'
+echo 'PHP TEST'
 echo '========='
 
 if [[ $(php -v | grep -o -m 1 'deb\.sury\.org') != '' ]]; then
