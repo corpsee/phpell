@@ -86,6 +86,12 @@ VHOST_NGINX="server {
         fastcgi_index index.php;
         fastcgi_param SCRIPT_FILENAME \$document_root/index.php;
         fastcgi_param SCRIPT_NAME index.php;
+        
+        fastcgi_param PHP_VALUE \"
+open_basedir=/var/www/${pHost}:/tmp \n
+session.save_path=/var/www/${pHost}/sessions \n
+error_log=/var/www/${pHost}/logs/php_error.log \n
+upload_tmp_dir=/var/www/${pHost}/temp\";
     }
 }"
 
